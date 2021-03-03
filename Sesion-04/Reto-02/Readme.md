@@ -1,13 +1,30 @@
-[`Backend Fundamentals`](../../README.md) > [`Sesión 04: API`](../README.md) >[`Ejemplo-02`](../Ejemplo-02) > `Reto 2`
-	
-## Reto 2
+# Reto 02
+## Objetivo
 
-Crear la estructura CRUD para las mascotas y las solicitudes de manera similar a lo que hicimos con el archivo `routes/usuarios.js`
+Utilizar lo aprendido para crear una aplicación de terminal que guarde las respuestas de una encuesta en un archivo de manera local.
 
-- Crea la estructura de rutas para el archivo `routes/mascotas.js`
-- Crea la estructura de rutas para el archivo `routes/solicitudes.js`
-- No olvides importar cada router y declarar la ruta donde se ejecutará en el archivo `routes/index.js`
+## Desarrollo
 
-![image](https://antonioperez.pro/wp-content/uploads/2017/12/crud-rails-1.png)
+Crea una aplicación de terminal para hacer un formulario para saber si una persona presenta los principales síntomas de COVID-19.
 
-[`Atrás: Ejemplo 02`](https://github.com/beduExpert/A2-Backend-Fundamentals-2020/blob/master/Sesion-04/Ejemplo-02) | [`Siguiente: Ejemplo 03`](https://github.com/beduExpert/A2-Backend-Fundamentals-2020/tree/master/Sesion-04/Ejemplo-03)
+### Requerimientos:
+
+Los resultados de las preguntas deberán almacenarse de manera local en un archivo con el nombre de la persona que ha respondido el cuestionario, así que esa deberá ser la primera pregunta.
+
+Ejemplo: `daniel_garcia.txt`
+
+Puedes basarte en las preguntas del sitio web:
+
+[Test Coronavirus](https://testcoronavirus.imss.gob.mx/webcovid19/)
+
+Puedes comenzar desde la siguiente pantalla
+
+<img src="./assets/coronavirus.png">
+
+Si lo deseas puedes llenarlo para poder conocer las preguntas.
+
+> **Notas**
+>
+>- Puedes dividir el cuestionario en varias partes para mejor legibilidad en la terminal
+>- Es suficiente con que guardes los resultados de la encuesta de manera ordenada en un folder.
+>- Puedes investigar cuántas respuestas positivas se necesitan para que sea un caso sospechoso.

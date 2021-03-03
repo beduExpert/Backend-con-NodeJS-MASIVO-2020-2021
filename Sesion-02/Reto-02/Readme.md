@@ -1,11 +1,21 @@
-[`Backend Fundamentals`](../../README.md) > [`Sesión 02: Administración de servidores`](../README.md) >[`Ejemplo-02`](../Ejemplo-02) > `Reto 2`
-	
-## Reto 2
+# Reto 2
+## Desarrollo
 
-## Instrucciones
+1. Crea un script `suma.js` que reciba como argumentos dos números, los sume y luego imprima el resultado en el siguiente formato:
 
-- Iniciar sesión en una máquina remota utilizando las **llaves que te proporciona el experto** y siguiendo los pasos anteriores
+    ```bash
+    $ node suma.js 33 12
 
-<img src="https://www.hostinger.es/tutoriales/wp-content/uploads/sites/7/2017/09/encriptacion-simetrica-tutorial-ssh.jpg" width="500">
+    33 + 12 = 45
+    ```
 
-[`Atrás: Ejemplo 02`](../Ejemplo-02) | [`Siguiente: Ejemplo 03`](https://github.com/beduExpert/A2-Backend-Fundamentals-2020/tree/master/Sesion-02/Ejemplo-03)
+2. Guarda en una variable de entorno de la consola tu nombre ej. `export NOMBRE=Daniel`
+3. Modifica el programa `suma.js` anterior para que antes de imprimir el resultado imprima tu nombre con el siguiente formato.
+
+    ```bash
+    $ node suma.js 33 12
+    Programado por: **Daniel**
+    33 + 12 = 45
+    ```
+
+4. Por último, devuelve un error en caso de que el usuario no ingrese argumentos o estos argumentos no sean del tipo número.

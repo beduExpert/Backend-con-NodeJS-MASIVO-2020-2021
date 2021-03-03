@@ -1,131 +1,37 @@
-[`Backend Fundamentals`](../../README.md) > [`Sesión 03: Arquitectura de software`](../README.md) > `Postwork`
-
 # Postwork
-
-## Requerimientos
-
-+ [Git](https://git-scm.com/downloads)
-+ Instalar **docker**
-  +  Para **instalar** docker en ubuntu  [sigue el siguiente tutorial](https://docs.docker.com/engine/install/ubuntu/)
-  + Para **instalar** docker en mac y windows [sigue el siguiente tutorial](https://www.docker.com/products/docker-desktop)
-
-Recuerda que todo lo trabajado en tu prework, así como durante la sesión, puede ser aplicado a tu proyecto personal; Para lo cual, toma las siguientes consideraciones:
-
-**Asegúrate de comprender:**
-
-- El concepto de la arquitectura cliente-servidor.
-- El reconocimiento de requerimientos funcionales y sus historias de usuario de tu aplicación.
-- El patrón MVC ( Modelo Vista Controlador ).
-
-Desarrollo en Java Script:
-- Comienza a desarrollar las clases de las entidades identificadas en tu aplicación.
 
 ## Objetivo
 
-- Entender las ventajas de una arquitectura basada en microservicios.
-- Familiarizarse con Docker
-- Descargar e instalar imagenes de docker y utilizarlas
+Conocer alternativas importantes que ayudarían a crear mejor código según sea la necesidad
 
-Adicionalmente te aconsejamos leer los siguientes contenidos que ampliarán tus conocimientos:
+## Instrucciones
+
+- Lee el siguiente material y ve los siguientes videos
 
 ## Desarrollo
 
-## Arquitectura de Microservicios
+### Generadores
 
-La arquitectura de microservicios es un estilo de arquitectura dónde una aplicación es creada por medio de una colección de servicios pequeños que se ejecutan como procesos independientes.
+Un generador es un proceso que puede pausarse, reanudarse y producir varios valores. Los generadores pueden mantener el estado y proporcionar con ello una forma eficiente de crear iteradores, y encargarse de flujos de datos infinitos que se pueden emplear para implementar desplazamiento infinito, también, se puedan usar con **promesas**, los generadores pueden imitar la funcionalidad de **async/await**, lo que permite utilizarlo como mecanismo asíncrono.
 
-Algunas de sus ventajas son:
+El siguiente tutorial puede ayudar a entender mejor los generadores con varios ejemplo, también, a cómo utilizar esta potente característica de JavaScript cuya ejecución puede detenerse y reanudarse.
 
-- Mantenimiento más sencillo
-- Gestión de datos descentralizada
-- Se puede lanzar un nuevo microservicio y actualizarlo de manera independiente
-- Cada microservicio es organizado en torno a las capacidades del negocio
-- Cada microservicio puede ser gestionado por un equipo pequeño
-- Escalamiento por componentes
+[Información sobre generadores en JavaScript | DigitalOcean](https://www.digitalocean.com/community/tutorials/understanding-generators-in-javascript-es)
 
-Para entenderlo de una forma más sencilla podemos comparar los microservicios con una aplicación monolítica (Muy similar a la que planteamos anteriormente con el patrón MVC).
+**¿Qué son los generadores?**
 
-![img/MicroservicesFowler_301b19b9d4631a2900fc19d8048105bb.png](img/MicroservicesFowler_301b19b9d4631a2900fc19d8048105bb.png)
+[¿Qué son los generadores en Javascript?](https://www.youtube.com/watch?v=tEkWs8RCkQQ)
 
->💡 **Nota:**
->
-> **Izquierda:**
->
-> "Una aplicación monolítica que contiene todas sus funcionalidades en un único proceso y se escala replicando este monolito en múltiples servidores"
->
->**Derecha:**
->
->"En una arquitectura de Microservicios cada funcionalidad está en servicios separados y escala distribuyendo estos servicios entre servidores, replicando como se vaya requiriendo."
+**Un ejemplo interesante "Generador infinito asíncrono"**
 
-## **Docker**
+[JavaScript Zero | Episodio 35.1: Generador Infinito Asíncrono](https://www.youtube.com/watch?v=xb9CYd3HgIs)
 
+### Operaciones con array
 
-<img src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Flogos-download.com%2Fwp-content%2Fuploads%2F2016%2F09%2FDocker_logo.png&f=1&nofb=1" width="250px">
+Si haz trabajado lo necesario con Javascript, incluso otros lenguajes de programación te habrás dado cuenta de la importancia de usar arreglos y con ello sus métodos de instancia, sin duda, han ahorrado trabajo al implementar código y por supuesto estos métodos están optimizados para utilizarlos de la mejor manera. Como se ha visto en esta sesión al hacer peticiones a una API se ha trabajado con arreglos para ordenar los resultados o para juntar los resultados pero supongamos que tenemos ciertas peticiones en un arreglo y queremos utilizar paralelismo con **promesas** y a su vez utilizar **async/await** para esperar los resultados para ir por todos esos resultados, se podría hacer con un for..loop pero hay otras opciones interesantes que se pueden explorar. La siguiente imagen podría ayudar a que conozcas más sobre el uso de estos métodos en diferentes problemas:
 
-Docker es una de las herramientas más populares para desarrollar microservicios.
+![107763607_4670604606298272_6801608362134760619_o.png](107763607_4670604606298272_6801608362134760619_o.png)
 
-Docker nos permite correr aplicaciones y gestionar los procesos de software en contenedores, cada contenedor funcionará cómo un entorno aislado que utilizará los recursos del sistema operativo dónde docker está instalado. Un contenedor es parecido a una máquina virtual, ya que los comandos que ejecutemos dentro de un contenedor no se verán reflejados en nuestro sistema operativo, pero sí se utilizarán los recursos de este mismo para correr este entorno de manera portable.
+Esta documentación es útil para conocer todas las operaciones anteriores:
 
-Una de las ventajas más importantes de esta plataforma es la portabilidad. Cuándo desarrollamos una imagen de docker basada en software existente podemos comenzar a desarrollar con la confianza de que una vez que hagamos las configuraciones pertinentes, nuestro software será ejecutado en un entorno con las mismas características sin importar si está en la nube o nuestra computadora.
-
-También el ecosistema docker permite poner a trabajar distintos contenedores de manera conjunta. Una vez dominandolo, por ejemplo, cada equipo en una empresa puede comenzar a crear sus propios servicios y levantar las instancias de bases de datos que necesiten.
-
-**Ejercicio**
-
-1. Instalar docker en tu computadora siguiendo las instrucciones para la [instalación de docker](https://docs.docker.com/engine/install/)
-2. Después de instalarlo y correr docker, para probar tu instalación ejecuta el comando:
-
-    ```jsx
-    docker run hello-world
-    ```
-
-    Deberás tener una salida similar a esta
-
-    ![img/Screen_Shot_2020-05-28_at_15.57.38.png](img/Screen_Shot_2020-05-28_at_15.57.38.png)
-
-    >💡 **Nota:**
-    >
-    >Si estás trabajando con docker desktops en Mac/windows al instalar docker puedes seguir su guía de inicio
-
-    ![img/Screen_Shot_2020-05-28_at_15.59.43.png](img/Screen_Shot_2020-05-28_at_15.59.43.png)
-
-3. Clona el repositorio de inicio con el siguiente comando
-
-    ```jsx
-    git clone https://github.com/docker/getting-started.git
-    ```
-
-    El proyecto "Getting started" es un repositorio de Github que contiene todo lo que necesitas para construir una imagen de Docker y correrla como contenedor.
-
-4. Entra al repositorio y ejecuta este comando para construir tu imagen de prueba
-
-    ```jsx
-    docker build -t docker101tutorial .
-    ```
-
-    Una imagen de Docker es un archivo privado al que sólo puede accedeer tu contenedor, provee todos los archivos y el código que tu contenedor necesita.
-
-5. Ejecuta tu primer contenedor
-
-    ```jsx
-    docker run -d -p 80:80 --name docker-tutorial docker101tutorial
-    ```
-
-    Inicia el contenedor basado en la imagen que construiste en el paso anterior. Correr el contenedor ejecuta tu aplicación con recursos privados, aislada del resto de tu ordenador.
-
-6. Verifica que esté corriendo con `docker ps`
-7. Si todo salió bien ahora podrás entrar a la dirección [http://0.0.0.0:80](http://0.0.0.0:80) y verás este pequeño servidor con una guía de inicio para docker
-
-    ![img/Screen_Shot_2020-05-28_at_16.10.16.png](img/Screen_Shot_2020-05-28_at_16.10.16.png)
-
-    En esta primera página nos explican más a detalle el comando que ejecutamos en el paso 5.
-
-    - Con la opción (flag) `-d` indicamos que queremos que se ejecute nuestro contenedor en segundo plano.
-    - Con el flag `-p 80:80` estamos *mapeando* el puerto ochenta de nuestra computadora al puerto 80 del contenedor.
-    - En la siguiente sección de nuestro comando indicamos la imagen que queremos instalar ( `docker/getting-started` en este caso).
-
-    Cabe aclarar que esta página fue *servida* por medio de un contenedor utilizando los recursos de nuestro sistema operativo
-
-> ⚠️ **Importante**
->
->Si te interesa seguir aprendiendo a utilizar docker te recomendamos revisar la [documentación oficial](https://docs.docker.com/).
+[Array](https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Objetos_globales/Array)

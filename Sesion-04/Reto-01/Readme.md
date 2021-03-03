@@ -1,22 +1,23 @@
-[`Backend Fundamentals`](../../README.md) > [`Sesión 04: API`](../README.md) >[`Ejemplo-01`](../Ejemplo-01) > `Reto 1`
-	
-## Ejercicio 1
+# Reto 01
+## Objetivo
 
-1. Con tu servidor corriendo vuelve a ejecutar las siguientes peticiones con [insomnia](https://insomnia.rest/download/) o [postman](https://www.postman.com/product/api-client/)
-    - GET [http://localhost:3000/v1/usuarios](http://localhost:3000/v1/usuarios)
-    - POST [http://localhost:3000/v1/usuarios](http://localhost:3000/v1/usuarios)
-    - PUT [http://localhost:3000/v1/usuarios/42](http://localhost:3000/v1/usuarios/42)
-    - DELETE [http://localhost:3000/v1/usuarios/42](http://localhost:3000/v1/usuarios/42)
+- Unificar las herramientas vistas en el ejemplo 1 para leer parámetros previos a la ejecución y también utilizar la lectura de datos del usuario.
+- Realizar pruebas del script de calculadora.
 
-    Analiza las respuestas y qué es lo que está sucediendo en cada caso.
+## Desarrollo
 
-2. Ahora ejecuta estas peticiones y observa qué es lo que sucede
-    - PUT [http://localhost:3000/v1/usuarios](http://localhost:3000/v1/usuarios)
-    - DELETE [http://localhost:3000/v1/usuarios](http://localhost:3000/v1/usuarios)
- 
-<img src="https://user-images.githubusercontent.com/13757596/87737569-ee019f80-c7a0-11ea-9029-8dcb4b613ec4.png" width="400">
+Utiliza el objeto `process.argv` para leer el tipo de operación que quiere realizar el usuario.
 
-<img src="https://user-images.githubusercontent.com/13757596/87737615-0a9dd780-c7a1-11ea-932e-a28b42d0684e.png" width="400">
+Utiliza el módulo `readline` para modificar la calculadora y hacerla más interactiva para el usuario. 
 
+**Ejemplo:** 
 
-[`Atrás: Reto 01`](https://github.com/beduExpert/A2-Backend-Fundamentals-2020/tree/master/Sesion-04/Ejemplo-01) | [`Siguiente: Ejemplo 02`](https://github.com/beduExpert/A2-Backend-Fundamentals-2020/tree/master/Sesion-04/Ejemplo-02)
+El usuario necesita saber cuales son las opciones permitidas y luego ingresar la opción de operación que quiere realizar. 
+
+Puedes mostrar un menú donde le muestras al usuario que operaciones puede hacer tu calculadora, después pides que ingrese el primer número y posteriormente el segundo. 
+
+### Toma en cuenta los siguientes casos de prueba:
+
+Caso 0. El usuario debe conocer las opciones que tiene a la mano. (Procura crearle un menú simple y agradable)
+
+Caso 1. El usuario ingresa letras en lugar de números. (Crea mensajes para errores que pueden surgir con entradas no soportadas por tu programa)

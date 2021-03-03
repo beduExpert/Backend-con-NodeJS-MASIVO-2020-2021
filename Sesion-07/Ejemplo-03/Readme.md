@@ -1,207 +1,105 @@
-# Ejemplo 3
+# Ejemplo #3
+### Objetivo
+En la clase anterior, hemos construido el proceso de autenticación, permitiendonos generar usuarios e iniciar sesión, sin embargo todavía todos los usuarios tienen acceso a nuestras rutas. Por eso, es importante indicar cuales de nuestras rutas son de acceso autorizado y además si tiene el rol para hacerlo.
 
-## Objetivo
-
-Crear un nuevo modelo (Solicitud) junto con la lógica de sus controladores.
-
-## Requerimientos
-
-Contar con el código de la API que se encuentra en desarrollo desde la Sesión 4.
-
-## Desarrollo
-
-1. Crea el modelo Solicitud en: `models/Solicitud.js` 
-
-- Comenta el modelo previamente declarado.
-- Inserta el siguiente código.
-
-```jsx
-const mongoose = require("mongoose");
-
-var SolicitudSchema = new mongoose.Schema(
-  {
-    mascota: {
-      type: mongoose.Schema.Types.ObjectId,
-      required: true,
-      ref: "Mascota",
-    },
-    anunciante: {
-      type: mongoose.Schema.Types.ObjectId,
-      required: true,
-      ref: "Usuario",
-    },
-    solicitante: {
-      type: mongoose.Schema.Types.ObjectId,
-      required: true,
-      ref: "Usuario",
-    },
-    estado: { type: String, enum: ["aceptada", "cancelada", "pendiente"] },
-  },
-  { collection: "solicitudes", timestamps: true }
-);
-
-  SolicitudSchema.methods.publicData = function(){
-  return {
-     id: this.id,
-     idMascota: this.idMascota,
-     fechaCreacion: this.fechaCreacion,
-     idAnunciante: this.idAnunciante,
-     idSolicitante: this.idSolicitante,
-     estado: this.estado
-    };
-  };
-  
-mongoose.model('Solicitud', SolicitudSchema)
+### Desarrollo
+#### Autenticación de usuarios
+1. Lo primero que haremos será generar un middleware que nos permitirá verificar el acceso e identificar el usuario autenticado. Vamos a crear el directorio `middlewares` donde crearemos cada uno de ellos.
+```
+mkdir middlewares
 ```
 
->💡 **Nota:**
-> Si no se pasa el atributo `collection` en las opciones Mongoose nombrará la colección como `solicituds`, por eso es buena práctica pasar el nombre de la colección.
->
+2. Ahora, crearemos un archivo `authentication.js` donde escribiremos las validaciones necesarias.
+```js
+// authetication.js
+const { response } = require('express');
+const jwt = require('jsonwebtoken');
 
-2. No olvides declarar el modelo en el archivo `app.js`
+const authenticate = (req, res, next) => {
+  const { authorization } = req.headers;
+  jwt.verify(authorization, 'secretkey', (err, decoded) => {
+    if (err) return res.status(401).json({ message: 'Unauthorized' });
+    console.log(decoded);
+    next();
+  });
+};
 
-```jsx
-...
-require('./models/Usuario');
-require('./config/passport');
-require('./models/Mascota');
-require('./models/Solicitud');
-...
+module.exports = authenticate;
 ```
 
-- El orden es importante, ya que los modelos Usuario y Mascota son utilizados dentro del modelo Mascota, entonces debe estar declarado primero.
+Como podrás observar en el código anterior los middlewares tienen una similitud a los handlers de las solicitudes, sin embargo, su caracteristica principal es interceptar las solicitudes para realizar una acción previa a continuar con la solicitud.
 
-3. Actualiza las rutas del archivo `routes/solicitudes.js` para usar el middleware de autorización.
+3. Ya con el middleware listo, es momento de implementarlo en aquellas rutas que sean consideradas de acceso restringido, en este caso, las de productos, reseñas, usuarios y ordenes de compra. Para lograrlo haremos una modificación en nuestro archivo `routes/index.js`.
+```js
+const express = require('express');
+const router = express.Router();
 
-```jsx
-const router = require('express').Router();
-const {
-  crearSolicitud,
-  obtenerSolicitud,
-  modificarSolicitud,
-  eliminarSolicitud
-} = require('../controllers/solicitudes')
-var auth = require('./auth');
+const authenticate = require('../middlewares/authentication');
 
-router.get('/', auth.requerido, obtenerSolicitud)
-router.get('/:id', auth.requerido, obtenerSolicitud)
-router.post('/', auth.requerido, crearSolicitud)
-router.put('/:id', auth.requerido, modificarSolicitud)
-router.delete('/:id', auth.requerido, eliminarSolicitud)
+// Add the required routes
+router.use('/auth', require('./auth')); 
+router.use('/products', authenticate, require('./products'));
+router.use('/reviews', authenticate, require('./reviews'));
+router.use('/users', authenticate, require('./users'));
+router.use('/orders', authenticate, require('./orders'));
 
 module.exports = router;
 ```
 
-4. Ahora actualiza la función `crearSolicitud` en `controllers/solicitudes.js`
+4. Una vez que hemos aplicado la autenticación, es hora de probar nuestro servicio.
+[Ir a reto #2](https://github.com/beduExpert/B2-Backend-Node-2020/tree/master/Sesion-07/Reto-02)
 
-```jsx
-const mongoose = require("mongoose");
-const Usuario = mongoose.model('Usuario')
-const Solicitud = mongoose.model('Solicitud')
-const Mascota = mongoose.model('Mascota')
-mongoose.set('useFindAndModify', false);
+#### Autorización a través de permisos
+Ahora que ya estamos autenticados, necesitamos indicarle a nuestra API, cuales rutas son accesibles para usuarios de tipo `administrador` y cuales son para usuarios de tipo `cliente`. 
 
-function crearSolicitud(req, res, next) { // POST v1/solicitudes?mascota_id=021abo59c96b90a02344...
-  // Buscamos la mascota a solicitar
-  Mascota.findById(req.query.mascota_id, async (err, mascota) => {
-    if (!mascota || err) {
-      return res.sendStatus(404)
+1. Vamos a construir un nuevo middleware que nos permitirá identificar si un usuario tiene acceso o no a cierto recurso.
+```js
+const permission = (...allowedRoles) => {
+  return (req, res, next) => {
+    const { user } = req;
+    if (user && allowedRoles.includes(user.type)) {
+      return next(); // if type permission is allowed, so continue the request using the next middleware
     }
-    if (mascota.estado==='adoptado') {
-      return res.sendStatus('La mascota ya ha sido adoptada')
-    }
-    // si está dispobible o pendiente podemos crear la solicitud
-    const solicitud = new Solicitud()
-    solicitud.mascota = req.query.mascota_id
-    solicitud.anunciante = mascota.anunciante
-    solicitud.solicitante = req.usuario.id
-    solicitud.estado = 'pendiente'
-    solicitud.save().then(async s => {
-      // antes de devolver respuesta actualizamos el tipo de usuario a anunciante
-      await Usuario.findOneAndUpdate({_id: req.usuario.id}, {tipo: 'anunciante'})
-      res.status(201).send(s)
-    }).catch(next)
-  }).catch(next)
+    return res.status(403).json({ message: 'Forbidden' });
+  };
 }
+
+module.exports = permission;
 ```
 
-- Para crear una solicitud la compondremos de un id de la mascota, id del anunciante, así como el id del solicitante.
+2. Con este middleware ahora podremos utilizarlo en cada una de nuestras rutas, para protegerlo de acuerdo a los requerimientos
+```js
+// products.js
+const express = require('express');
+const router = express.Router();
+const sequelize = require('../db');
+const permission = require('../middlewares/permission');
 
-5. Actualiza la función obtenerSolicitud, esta te permitirá obtener todas las solicitudes.
+// Get all products
+router.get('/', permission('admin', 'client'), async (req, res) => {
+  ...
+});
 
-```jsx
-function obtenerSolicitud(req, res, next) {
-  if (!req.params.id) {
-    // sin :id, solo enlistaremos las solicitudes dónde el usuario es anunciante o solicitante
-    Solicitud.find({ $or: [{ solicitante: req.usuario.id }, { anunciante: req.usuario.id }] }).then(solicitudes => {
-      res.send(solicitudes)
-    }).catch(next)
-  } else {
-    // Al obtener una solicitud individual con el :id poblaremos los campos necesarios
-    Solicitud.findOne({ _id: req.params.id, $or: [{ solicitante: req.usuario.id }, { anunciante: req.usuario.id }] })
-      .then(async (solicitud) => {
-        // añadimos información sobre la mascota
-        await solicitud.populate('mascota').execPopulate()
-        if (solicitud.estado === 'aceptada') {
-          // Si la solicitud ha sido aceptada, se mostrará la información de contacto
-          await solicitud.populate('anunciante', 'username nombre apellido bio foto telefono email').execPopulate()
-          await solicitud.populate('solicitante', 'username nombre apellido bio foto telefono email').execPopulate()
-          res.send(solicitud)
-        } else {
-          res.send(solicitud)
-        }
-      }).catch(next)
-  }
-}
+// Create a new product
+router.post('/', permission('admin'), async (req, res) => {
+  ...
+});
+
+// Update a product by id
+router.put('/:id', permission('admin'), async (req, res) => {
+  ...
+});
+
+// Delete a product by id
+router.delete('/:id', permission('admin'), async (req, res) => {
+  ...
+});
+
+module.exports = router;
 ```
 
-Aquí está el resultado de una solicitud que ha sido aceptada:
+3. Ahora revisemos que los permisos funcionan correctamente.
 
-`GET[/v1/solicitudes/5eeb856741f87e8de15d031a](http://localhost:3000/v1/solicitudes/5eeb856741f87e8de15d031a)`
+[Ir al reto #3](https://github.com/beduExpert/B2-Backend-Node-2020/tree/master/Sesion-07/reto-03)
 
-```json
-{
-  "_id": "5eeb856741f87e8de15d031a",
-  "estado": "aceptada",
-  "mascota": {
-    "fotos": [
-      "https://images.app.goo.gl/MsX6R9aTWfQKjsvW6"
-    ],
-    "_id": "5ee8f79d2ab51833d2147e26",
-    "nombre": "Kalita",
-    "descripcion": "Gatito bebé enncontrado debajo de un carro necesita hogar",
-    "anunciante": "5ee7101ee584287c9d4d44ce",
-    "createdAt": "2020-06-16T16:47:25.900Z",
-    "updatedAt": "2020-06-16T16:47:25.900Z",
-    "__v": 0
-  },
-  "anunciante": {
-    "_id": "5ee7101ee584287c9d4d44ce",
-    "username": "karly",
-    "nombre": "Karla",
-    "apellido": "Ivonne",
-    "email": "karly@gmail.com",
-    "telefono": "5512345678",
-    "bio": "Yo soy Karly, look at me!",
-    "foto": "http://pictures/foto-de-perfil"
-  },
-  "solicitante": {
-    "_id": "5ee8f78b2ab51833d2147e25",
-    "username": "sony",
-    "nombre": "Sonia",
-    "apellido": "Martinez",
-    "email": "sony@gmail.com",
-    "telefono": "5512345678",
-    "bio": "Yo soy Sony, look at me!",
-    "foto": "http://pictures/foto-de-perfil"
-  },
-  "createdAt": "2020-06-18T15:16:55.336Z",
-  "updatedAt": "2020-06-18T17:46:45.704Z",
-  "__v": 2
-}
-```
-- Así nuestros usuarios podrán ponerse en contacto y concretar la adopción de su nuevo amigo.
-
-6. Recomendación: [`Pasa al Reto 2:`](https://github.com/beduExpert/A2-Backend-Fundamentals-2020/tree/master/Sesion-07/Reto-02)
-
-[`Atrás: Reto 02`](https://github.com/beduExpert/A2-Backend-Fundamentals-2020/tree/master/Sesion-07/Reto-02) | [`Siguiente: Reto 03`](https://github.com/beduExpert/A2-Backend-Fundamentals-2020/tree/master/Sesion-07/Reto-03)
+#RetaTuPotencial

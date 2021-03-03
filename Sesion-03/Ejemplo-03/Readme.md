@@ -1,77 +1,154 @@
-[`Backend Fundamentals`](../../README.md) > [`Sesión 03: Arquitectura de software`](../README.md) > `Ejemplo 3`
-
-# Modelo Vista Controlador
+# Ejercicio 3
 
 ## Objetivo
 
-Entender la arquitectura Modelo Vista Controlador y su utilidad en la etapa de diseño de una aplicación.
+Comprender el uso de async/await como mecanismo asíncrono de Javascript
 
 ## Requerimientos
 
-Computadora y cuaderno para tomar notas. Estar familiarizado con el concepto de Programación Orientada a Objetos.
+- Instalación de Node completada
+- Conexión a internet
 
-## Desarrollo
+Importante: Para empezar con async/await es importante dominar callbacks y promesas, tal cual se ha visto para esta sesión
 
-Una de las maneras para bajar nuestras ideas y comenzar a diseñar la arquitectura de nuestra solución de software es por medio del patrón MVC *(Model View Controller)* 
+### Async/Await
 
-### ¿Qué es MVC?
+Los operadores de async/await se incluyeron a partir de ECMAScript 7 para simplificar la forma de trabajar con las promesas, la finalidad es tener implementaciones aún más legibles de código, de esta forma será posible esperar por una respuesta y descartando el uso de *then* ****y *catch*
 
-Es un patrón de diseño que separa las partes de nuestra aplicación en tres elementos.
+**Conceptos básicos**
 
-- **Modelo:** Contiene una representación de los datos que maneja el sistema, su lógica de negocio, y sus mecanismos de persistencia.
-- **Vista:**  Compone y presenta la información que se envía al cliente y los mecanismos interacción con éste por medio de una interfaz de usuario.
-- **Controlador:** Actúa como un intermediario entre el Modelo y la Vista, gestionando el flujo de información entre ellos y las transformaciones para adaptar los datos a las necesidades de cada uno.
+- **async** es el operador para declarar una función
+- **await** debe ser usada dentro de la función **async**
+- La función **async** retorna una **promesa**.
 
-<img src="https://designlopers.com/views/assets/post/Desarrollo_de_aplicaciones_profesionales_en_PHP_y_MVC.png" width="550">
+El siguiente video puede ser de utilidad para comprender la idea anterior
 
-### Flujo MVC
+[Cómo funciona Async/Await en JavaScript](https://youtu.be/qY65YXZDyIk)
 
-MVC es un estilo de arquitectura que nos sirve para abstraer el funcionamiento de nuestra aplicación y separar las partes referentes al negocio de la lógica. Actualmente existen varios frameworks que han adaptado este estilo a su manera y que nos ayudan a no perder tiempo y comenzar a desarrollar con reglas preestablecidas. Algunos de estos frameworks son:
+Hasta este punto sabemos cómo funciona la asincronía y porqué es importante usarla.
 
-- SailJS o Express para NodeJS.
-- Django si lo tuyo es Python.
-- Ruby on Rails para el lenguaje de programación Ruby.
-- Laravel si lo tuyo es PHP.
+### Declarar una función async()
 
-Los cuales nos permiten entregarle al usuario las vistas (documentos HTML, CSS y Javascript) desde el servidor.
+- Manera clásica:
 
-MVC también ha sido adaptado para utilizarse en frontend y en Android.
+    ```jsx
+    async function quienEsePokemon(){
+    	//TODO
+    }
+    ```
 
-### Modelo: Utilizando Programación Orientada a Objetos
+- Con arrow functions:
 
-Continuando con AdoptaPet, podemos identificar cuatro entidades principales:
+    ```jsx
+    let quienEsePokemon = async () => {
+      //TODO
+    }
+    ```
 
-1. Mascota: Se refiere al animalito que los administradores registran y que los usuarios pueden adoptar.
-2. Usuario: hay dos tipos de usuarios de nuestra aplicación, el tipo normal que busca adoptar una mascota y el tipo anunciante que puede ser el cuidador de la mascota o del centro de adopción. Se encarga de registrar a las mascotas y de contactarse con los usuarios cuando estos envían una solicitud, así como de aprobarla y rechazarla.
-3. Solicitud: Una solicitud puede ser creada por un usuario para ponerse en contacto con el administrador y adoptar a una mascota. 
+### Manejo de errores
 
-Estos cuatro elementos serán nuestros modelos. Utilizando programación orientada a objetos podemos crear una [clase](https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Classes) para cada uno y así posteriormente el usuario podrá utilizar estos modelos creando instancias y obteniéndolas. 
+Cuando usamos promesas la manera de controlar los errores es con *catch* con async/await es utilizando try/catch aunque también podemos utilizar *catch*
+
+Ejemplo:
 
 ```jsx
-// Mascota.js
-
-/** Clase que representa un animalito a adoptar */
-class Mascota{
-	constructor(nombre, categoria, fotos, descripcion, anunciante, ubicacion){
-		this.nombre = nombre; // nombre de la mascota (o titulo del anuncio)
-    this.categoria = categoria; // perro | gato | otro
-    this.fotos = fotos; // links a las fotografías
-    this.descripcion = descripcion; // descripción del anuncio
-    this.anunciante = anunciante; // contacto con la persona que anuncia al animalito
-    this.ubicacion = ubicacion; // muy importante
-	}
-	
-	guardar(){
-		// función para guardar un nuevo registro en la base de datos.
-	}
-	
+try {
+  let pokemon = await quienEsEsePokemon()
+  console.log(`El pokemon es${pokemon.name}`);
+} catch (error) {
+  console.error(error);
 }
 ```
 
->💡**NOTA:**
->
->Este código nos va a permitir instanciar nuevos objetos, pero para que esta información persista debemos guardarla en una base de datos, algo que veremos en las sesiones posteriores.
+Usando catch:
 
--------
+```jsx
+ await quienEsEsePokemon()
+   .then((pokemon) => console.log(`El pokemon es${pokemon.name}`))
+   .catch((error) => console.error(error));
+ return;
+```
 
-[`Atrás: Reto-02`](https://github.com/beduExpert/A2-Backend-Fundamentals-2020/tree/master/Sesion-03/Reto-02) | [`Siguiente: Reto 03`](../Reto-03)
+### Ejercicio
+
+En el siguiente ejercicio se aborda todo lo visto en la sesión es una combinación de los diferentes mecanismos de asincronía y utilizado *https* para hacer peticiones a la [PokéAPI](https://pokeapi.co/)
+
+1. Copia el siguiente código
+
+    ```jsx
+    const https = require("https");
+
+    function obtenerPokemon(pokemon) {
+      return new Promise((resolve, reject) => {
+        https
+          .get(`https://pokeapi.co/api/v2/pokemon/${pokemon}`, (resp) => {
+            let datos = "";
+
+            resp.on("data", (chunk) => {
+              datos += chunk;
+            });
+
+            resp.on("end", () => {
+              datos = JSON.parse(JSON.stringify(datos))
+              resolve(datos);
+            });
+          })
+          .on("error", (err) => {
+            reject(err.message);
+          });
+      });
+    }
+
+    const pokemones = [
+      "bulbasur",
+      "charmader",
+      "squirtle",
+      "pidgey",
+      "pikachu",
+      "rattata",
+      "alakazam",
+      "onix",
+      "mew",
+      "wigglytuff",
+    ];
+
+    async function atraparPokemones(pokemones) {
+      try {
+        let resultados = await Promise.all(
+          pokemones.map(async (pokemon) => {
+            let resultado = await obtenerPokemon(pokemon);
+            console.log(`Pokemon atrapado ${pokemon}`);
+            return resultado;
+          })
+        );
+        return resultados
+      } catch (error) {
+        console.error("Error", error);
+      }
+    }
+
+    atraparPokemones(pokemones).then()
+    ```
+
+2. Ejecuta:
+
+    ```bash
+    node ejercicio.js
+    ```
+
+3. Resultado:
+
+    ```bash
+    Pokemon atrapado pidgey
+    Pokemon atrapado squirtle
+    Pokemon atrapado bulbasur
+    Pokemon atrapado charmader
+    Pokemon atrapado wigglytuff
+    Pokemon atrapado onix
+    Pokemon atrapado alakazam
+    Pokemon atrapado pikachu
+    Pokemon atrapado mew
+    Pokemon atrapado rattata
+    ```
+
+    El resultado puede variar ya que estamos utilizando **Promise.all** para hacer las peticiones.

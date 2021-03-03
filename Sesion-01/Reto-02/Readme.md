@@ -1,39 +1,22 @@
-  [`Backend Fundamentals`](../../README.md) > [`Sesión 01: Consola`](../README.md) >[`Ejemplo-02`](../Ejemplo-02) > `Reto 2`
- 
+# Reto 2 - USO DE MODULOS
 
-	
-# Reto 2
+PARTE 1
 
-# Instrucciones:
+1. En un archivo js, importa un modulo del core de node.js (módulos nativos), usa cualquiera de la documentación:  [Lista de Modulos](https://nodejs.org/dist/latest-v12.x/docs/api/) 
 
-Con la estructura creada en el [Reto 1](../Reto-01/Readme.md) realiza las siguientes ediciones de los archivos.
+2. Imprime el resultado en una consola.
 
-1. Verifica que el archivo **README.md** que se encuentra dentro de tu carpeta **bedu**. 
+PARTE 2
 
-   **Arquitectura:** `Documents/bedu/README.md`, si no existe crealo.
+1. En un proyecto NPM (donde ejecutaste el npm init para iniciar proyecto npm). installar el modulo colors.js
 
-2. Al archivo `README.md` agrega la siguiente información:
+```
+npm install colors
+```
+2. Ir a la sección USAGE de la [DOCUMENTACION DE COLORS](https://www.npmjs.com/package/colors) e implementar impresiones de colores en mi proyecto.
 
-    ```markdown
-    # Consola
-    Clase de consola del curso Back-end fudamentals.
-    ```
+PARTE 3
 
-3. Edita el archivo **inicio.sh** que se encuentra dentro de tu carpeta **src**. 
+1. En un archivo js, Crear un modulo personalizado, e integrarlo a mi archivo princpial
 
-   **Arquitectura:** `Documents/bedu/src/incicio.sh`
-
-    ```bash
-    echo "Hola desde la consola"
-    ```
-
-4. Edita el archivo **main.js** que se encuentra dentro de tu carpeta **src**.
-
-   **Arquitectura:** `Documents/bedu/src/main.js`
-
-    ```js
-    var fecha = new Date();
-    console.log(`Fecha actual: ${fecha}`)
-    ```
-
-[`Atrás: Ejemplo 2`](../Ejemplo-02) | [`Siguiente: Ejemplo 3`](https://github.com/beduExpert/A2-Backend-Fundamentals-2020/tree/master/Sesion-01/Ejemplo-03)
+2. Imprimir en consola resultado.

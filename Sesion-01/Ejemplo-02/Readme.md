@@ -1,91 +1,254 @@
-[`Backend Fundamentals`](../../README.md) > [`Sesión 01: Consola`](../README.md) `Ejemplo 02`
+# Ejemplo 2
 
-# Requerimientos
+## Objetivo
 
-- Tener **instalado** sistema operativo **Linux** o **MacOS**.
+Conocer y trabajar con módulos del core y módulos de terceros.
 
-# Desarrollo
+## Requerimientos
 
-# Editando Archivos
+Tener instalado Nodejs
 
-- En Linux y MacOS existen diversas maneras de editar un archivo sin necesidad de **salir de la terminal.**
+## Desarrollo
 
-## nano
+### Módulos del core
 
-**Sintaxis: `nano [nombre del archivo]`**
+Node.js tiene módulos que ofrece de manera nativa, es decir, no requiere instalación de nada mas para ser utilizados (los módulos compilados se encuentran en la instalación de Nodejs en la carpeta **lib/**), a estos se les conoce como modulos del core.
 
-<img src="img/Untitled.png" width="650px">
+Node ofrece una gran cantidad de modulos, podemos encontrarlos en su documentación: 
 
-**Esto nos muestra la siguiente interfaz**
+[Node.js v14.5.0 Documentation](https://nodejs.org/dist/latest-v12.x/docs/api/modules.html#modules_core_modules)
 
-<img src="img/Screen_Shot_2020-03-16_at_22.21.11.png" width="650px"> 
 
-Ahora, copiaremos el siguiente código:
 
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Editando en Nano</title>
-</head>
-<body>
-	  <h1>hello friend!</h1>
-</body>
-</html>
+#  ENTENDAMOS LOS MODULOS  👊
+
+### ¿QUE SON LOS MODULOS?
+
+Son herramientas o grupo de funciones prefabricadas que nos facilitan la construcción de nuestro código.
+
+### ¿COMO SE USAN?
+
+Imagenemos que tenemos que ir a la escuela, y nuestra mochila es nuestro documento de javascript "mochila.js", ahora imaginemos que cada materia es un modulo, y ese dia tendremos que ver 3 materias, matematicas, fisica y quimica. Entonces... yo necesito meter cada libro en la mochila para poder llevar esas materias. 
+
+Ahora pensemos que la manera de realizar la acción de meter los libros a la mochila requiere un comado, y ese comando es el siguiente : 
+
+```jsx
+var MATEMATICAS = require('LIBRO_DE_MATEMATICAS');
+var FISICA      = require('LIBRO_DE_FISICA');
+var QUIMICA     = require('LIBRO_DE_QUIMICA'); 
+```
+Entonces en mi archivo mochila.js ya tengo 3 variables que cada una esta cargando una materia.
+
+Ahora si una materia es igual a un modulo, esto quiere decir que tengo 3 modulos cargados en mi archivo, si lo pasamos al mundo de node, eso quiere decir que puedo cargar los modulos mandadolos llamar con esta sintaxis:
+
+```jsx
+var VARIABLE_DONDE_SE_GUARDARA = require('NOMBRE_DEL_MODULO');
 ```
 
->💡 **Nota:**
->
->Para guardare un archivo utilizamos el comando `ctrl + o`
->
->Y para salir presionamos `ctrl + x`
+Basicamente la función ``` "require()" ``` es la que se encarga de cargar los modulos en nuestro archivo, a este proceso se le conoce como : INYECCION DE DEPENDENCIAS.
 
-## vim
+Existen 3 tipos de modulos que podemos utilizar en nuestros proyectos:
 
-vim es una **versión mejorada de vi** un editor de texto que viene instalado por defecto en los sitemas UNIX. Aunque es más complejo de utilizar que nano, una vez que lo dominas será una **poderosa herramienta.**
+- MODULOS INTEGRADOS DE NODE.JS
+- MODULOS DE TERCEROS NPM
+- MODULOS CREADOS
 
-**Ejemplo:**
 
-A continuación abriremos el archivo anterior con el comando `vim + [nombre de archivo]`
 
-<img src="img/Untitled%201.png" width="650px">
 
-**Esto nos mostrará una interfaz como la siguiente**
+##  💥 MODULOS INTEGRADOS DE NODE.JS   💥
 
-<img src="img/Untitled%202.png" width="650px">
+Estos modulos ya vienen integrados en node.js no requieren ningún tipo de instalación, solo los mandamos llamar directo y podremos hacer uso de ellos. 
 
-Te darás cuenta que vim **no** nos permite **editar** directamente cuando abrimos un archivo, ya que vim tiene diferentes **modos** de trabajo.
+Si revisamos la [lista de modulos](https://nodejs.org/dist/latest-v14.x/docs/api/), encontraremos el modulo OS, 
+este modulo nos permite revisar los datos del hardware de nuestra computadora, como uso de CPU, memoria, cuantos cores tiene de procesador etc. 
 
->💡 **Nota:**
->
->Para activar el modo edición **(insert mode)** presionaremos la tecla `i`
+Si yo quiero saber cuantos CPU tiene mi computadora, con el modulo de OS, el primer paso seria cargar el modulo en mi archivo
+```jsx
+var os = require('os');
+```
 
-<img src="img/Screen_Shot_2020-03-21_at_14.35.53.png" width="650px">
+El siguiente paso seria revisar la documentación para determinar cual función del modulo OS es la que me permite ver los CPUS (Procesadores)
 
-Ahora añadiremos la línea `<p>Editando desde VIM</p>` debajo de nuestro encabezado desplazandonos con las teclas de flecha.
+![img/cpus.png](img/cpus.png)
 
-<img src="img/Untitled%203.png" width="650px">
+podemos observar que para saber cuantos CPU tengo, se usa la funcion ``` cpus() ``` 
 
->💡 **Nota:**
->
->Para guardar primero debemos salir del modo edición, presionando la tecla `ESC`
+lo siguiente entonces es llamar la funcion cpus() y almacenaremos en una variable que llevara el nombre de "misCpu" tmb imprimire la variable en consola para ver el resultado final:
 
-<img src="img/Screen_Shot_2020-03-21_at_15.37.45.png" width="650px">
+--- EJEMPLO COMPLETO ---
 
-Esto nos llevará al modo de comandos, aquí ingresaremos el comando `:w` para **guardar,** ó podemos usar `:wq` para **guardar y salir**, luego presionamos **enter.**
+```jsx
+var os = require('os');
 
-Si haz seguido bien los pasos **¡felicidades!** 🎉, has salido de vim sin morir en el intento.
+var misCpu = os.cpus();
 
-## Mas comandos de vim
+console.log(misCpu);
 
-`:q!` Salir sin guardar cambios
+```
 
-`u` Deshacer
 
-`ctrl + r` Rehacer
 
-`:set number` mostrar numeración de líneas
 
-[`Atŕas: Reto-01`](https://github.com/beduExpert/A2-Backend-Fundamentals-2020/tree/master/Sesion-01/Reto-01) | [`Siguiente: Reto-02`](../Reto-02)
+## 🐼 USANDO MODULOS DE TERCEROS CON NPM 🐼
+
+Node.js tiene un numero limitado de modulos que nos ofrece de manera nativa como lo vemos en la documentación, por ello npm viene a solucionarnos la vida, ya que en sus arcas, podemos encontrar millones de modulos para hacer cualquier cosa que querramos, pero a diferencia de los modulos de node.js, los de npm requieren una serie de procesos para incorporarlos a nuestros proyectos.
+
+Sigamos los pasos a continuación para poder lograr esto:
+
+1. Iniciar npm en el proyecto en la carpeta donde tienes o pretendes tener tu proyecto de node.js.
+
+    ❗ LA CARPETA DONDE ALMACENES TU PROYECTO NO SE PUEDE LLAMAR COMO ALGUN MODULO DE NODE.JS NI DE EXTERNOS ❗ 
+
+    ```bash
+    npm init -y 
+    ```
+
+
+
+2. A continuación, se creará un archivo package.json, este archivo representa la configuración del proyecto y de las dependencias(modulos) que se instalaran en el.
+
+    ```bash
+    {
+      "name": "sesion1", // Nombre del proyecto 
+      "version": "1.0.0", // Versión del proyecto
+      "description": "", // Breve descripción del proyecto
+      "main": "ejemplo.js", // Archivo con el que inicia el proyecto.
+      "scripts": { // scripts o funciones personalizadas
+        "test": "echo \"Error: no test specified\" && exit 1"
+      },
+      "author": "", // Creador del proyecto
+      "license": "ISC" // Tipo de licencia
+    }
+    ```
+3. Una vez hecho esto, procederemos a bajar el modulo o paquete de la nube de NPM, para esto es necesario tener internet, la manera de hacerlo es utilizando el comando install de npm. Para este ejemplo vamos a utilizar el modulo [moment.js](https://www.npmjs.com/package/moment/) utilizando el comando:   
+❗ ES IMPORTANTE QUE ESTEMOS EN LA CARPETA DONDE TENEMOS NUESTRO PACKAGE.JSON, DE OTRO MODO FALLARA LA INSTALACION ❗ 
+
+
+
+```bash
+npm install moment
+```
+
+Revisando el archivo package.json notamos que sea agrega el campo *dependencies* y dentro el módulo instalado, además, se creó el directorio **node_modules/** que será la carpeta dónde estarán todos los archivos de los paquetes instalados:
+
+```json
+"dependencies": {
+    "moment-timezone": "^0.5.31"
+  }
+```
+
+De modo que si por alguna razón borramos la carpeta **node_modules/** dejarán de funcionar estos módulos. Si ocurre esto bastará con ejecutar el comando :
+
+```bash
+npm install
+```
+
+Ya que, nuestros módulos instalados se encuentran especificados en el archivo package.json
+
+4. Para cargar esto módulos ocupamos la misma función **require()**
+
+```jsx
+var moment = require('moment');
+```
+
+5. Al igual que nuestro ejemplo de modulos del core de node, una ves que lo integramos, ya lo podemos utilizar.
+
+-- EJEMPLO COMPLETO ---
+
+```jsx
+var  moment = require("moment");
+
+var  now = moment();
+
+console.log(`Hoy es ${now}`);
+
+```
+
+
+
+## 🐌 CREANDO MIS MODULOS Y UTILIZANDOLOS 🐌
+
+
+Crear un modulo propio es igual que crear un código externo y utilizarlo en nuestro proyecto principal.
+
+Hagamoslo !! 🤘 🔥 🔥
+
+Primero en una carpeta nueva vamos a crear dos archivos:
+
+- principal.js
+- modulo.js
+
+El archivo principal.js contendra nuestro proyecto y modulo.js sera nuestro modulo.
+
+nuestro archivo pricipal tendra la llamada una funcion llamada sumar()
+
+principal.js
+```jsx
+sumar(2,2)
+```
+y nuestro archivo modulo.js tendra lo siguiente : 
+
+```jsx
+
+function sumar (num1, num2) {
+    console.log(num1 + num2)
+}
+
+```
+
+Ahora para conectar al archivo princpial.js y al modulo.js necesito 2 cosas:
+
+PASO 1 ⚡: Mandar llamar de mi archivo principal.js el modulo con la funcion require()
+
+principal.js
+```jsx
+var sumar = require('./modulo')
+sumar(2,2)
+```
+Aqui sucede algo diferente a la importación de modulos de node y de npm... y es que cuando mando llamar un modulo creado por mi, lo hago buscando la ubicación del archivo en mi computadora, por eso le agrego el "./", ese "./" significa que buscara el archivo que quiero importar desde la ubicación donde me encuentro en ese momento, si el archivo modulo.js estuviera dentro de una carpeta entonces lo llamaría asi :
+
+principal.js
+```jsx
+var sumar = require('./carpeta/modulo')
+sumar(2,2)
+```
+
+❗ NO SE NECESITA PONER LA EXTENCION DEL ARCHIVO EN LOS REQUIRE CUANDO ES UN ARCHIVO JS ❗
+
+
+PASO 2 ⚡: Ahora necesito convertir mi archivo modulo.js en un modulo de node.js, por lo que agregare la sentencia siguiente:
+
+modulo.js
+```jsx
+
+function sumar (num1, num2) {
+    console.log(num1 + num2)
+}
+
+module.exports = sumar; // <== le digo que la función sumar es un modulo y que la exportare para que pueda ser utilizada por quien la mande llamar con el require() 
+```
+
+ahora si, cuando utilizo la función sumar en mi archivo principal.js utilizara la función del archivo modulo.js
+
+
+--- EJEMPLO COMPLETO ---
+
+
+principal.js
+```jsx
+var sumar = require('./modulo')
+sumar(2,2)
+```
+
+
+modulo.js
+```jsx
+
+function sumar (num1, num2) {
+    console.log(num1 + num2)
+}
+
+module.exports = sumar; 
+```
+

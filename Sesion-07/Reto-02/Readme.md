@@ -1,13 +1,19 @@
-`Backend Fundamentals` > `S07 - Mongoose` 
-	
-## Reto 2
+# Reto #2
+### Objetivo
+Hemos aplicado las reglas de autenticación y solo usuarios autenticados podrán acceder a las siguientes rutas:
+ - `/api/products`
+ - `/api/reviews`
+ - `/api/users`
+ - `/api/orders`
 
-1. Crea el método `modificarMascota` teniendo en cuenta que el id del anunciante de la mascota debe ser igual al id del usuario que está peticionando para poder realizar cambios. Utiliza el token de acceso con [`req.usuario.id`](http://req.usuario.id) para comparar.
-2. Crea el método `eliminarMascota` teniendo en cuenta que el id del anunciante de la mascota debe ser igual al id del usuario que está peticionando.
-3. ¿En qué otro caso se te ocurre que sea útil el método populate?
+Mientras que a las rutas que pueden acceder sin ningún tipo de autenticación son:
+ - `/api/auth/login`
+ - `/api/auth/signup`
 
-![image](https://i.stack.imgur.com/GcGMK.png)
+Duración del reto: 10m
 
-2. Recomendación: [`Pasa al Reto 3:`](https://github.com/beduExpert/A2-Backend-Fundamentals-2020/tree/master/Sesion-07/Reto-03)
+### Desarrollo
+1. Deberás asegurarte que las rutas funcionan adecuadamente con un usuario autenticado.
+2. Ahora, sin autenticación deberás revisar que no tengas acceso a los recursos solicitados.
 
-[`Atrás: Ejemplo 02`](https://github.com/beduExpert/A2-Backend-Fundamentals-2020/tree/master/Sesion-07/Ejemplo-02) | [`Siguiente: Ejemplo 03`](https://github.com/beduExpert/A2-Backend-Fundamentals-2020/tree/master/Sesion-07/Ejemplo-03)
+#RetaTuPotencial

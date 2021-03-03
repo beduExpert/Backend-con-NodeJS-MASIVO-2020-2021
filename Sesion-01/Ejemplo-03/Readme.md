@@ -1,51 +1,87 @@
-[`Backend Fundamentals`](../../README.md) > [`Sesión 01: Consola`](../README.md) > `Ejemplo 03`
+# Ejemplo 3
 
-# Requerimientos
+## Objetivo
 
-- Tener **instalado** sistema operativo **Linux** o **MacOS**.
+Comprender el uso del archivo package.json
 
-# Desarrollo
+## Requerimientos
 
-# Instalando paquetes
+Tener instalado Nodejs y npm
 
-- Los paquetes en los sitemas operativos unix, son **programas** que han sido empaquetados para su instalación y distribución.
-- Distribuciones de Linux como Ubuntu y Debian cuentan con su gestor de paquetes por defecto.
-- Para MacOs debemos **instalar Brew** siguiendo las instrucciones del [siguiente enlace](https://brew.sh/index_es)
+## Desarrollo
 
-## Actualizando la lista de repositorios
+### Package.json
 
-- Para actualizar la fuente oficial de dónde se descargaran los paquetes utilizaremos el **siguiente comando:**
+Se considera este archivo como un manifesto de nuestro proyecto, donde se definen y se manejan características como nombre del proyecto, versión, repositorio, dependencias, autor, licencias, etc.
 
-`sudo apt-get update`
+Se crea al iniciar un nuevo módulo con **npm**:
 
-<img src="img/Screen_Shot_2020-03-21_at_16.33.43.png" width="650px">
+```bash
+npm init
+```
 
-Al utilizar el prefijo **sudo**, estamos dando el permiso a nuestro gestor de paquetes de **hacer cambios en nuestro sistema**
+A continuación, nos pide configurar ciertas características respondiendo las preguntas que el asistente hace: 
 
->💡**Nota:**
->
->Es posible que nos solicite nuestra contraseña.
+- package name
+- version
+- description
+- entry point
+- test command
+- git repository
+- keywords
+- author
+- license
 
-## Instalando paquetes
+Y al final nos pide aceptar la configuración, después de esto se crea package.json. Aclarando, este archivo se puede crear manualmente únicamente con los siguientes campos: *name* y  *version*, pero mas adelante necesitaremos escribir los demás campos, la manera más práctica es iniciando npm.
 
+Importante: El archivo **package.json** debe ser un **JSON** de formato válido esta implicación el siguiente link contiene la explicación y ejemplos de JSON que pueden aclarar tus dudas: [https://developer.mozilla.org/es/docs/Learn/JavaScript/Objects/JSON](https://developer.mozilla.org/es/docs/Learn/JavaScript/Objects/JSON)
 
-### Sintaxis:
+De igual forma, cuando se necesita iniciar npm y no es necesario configurar package.json en ese momento podemos utilizar la bandera **-y** que hará la configuración por defecto y que más adelante podemos editar.
 
-`[sudo] apt-get install [nombre del paquete o paquetes separados por espacio]`
+```bash
+npm init -y
+```
 
-**Instalaremos** un paquete simple llamado **cowsay** ejecutando el siguiente comando:
+## Explicando los campos de package.json
 
-`sudo apt-get install cowsay`
+### name
 
-En caso de que nos pida **confirmación para continuar ingresaremos la opción**  `Y` y presionamos **enter.**
+Es un campo obligatorio, la cadena representa el nombre del proyecto y es utilizado para formar un identificador junto a **version** en caso de ser publicado en npm. Entonces en caso de ser publicado se tiene que asegurar que no exista el nombre en npm.
 
-Si todo ha sido exitoso ahora tendremos un nuevo ***comando*** instalado en nuestra terminal el cual ejecutaremos de la siguiente manera:
+### version
 
-### Sintaxis:
+Es una cadena obligatoria que indica cuál es la versión más actual del proyecto definida por nosotros, para el versionamiento sigue la convencion **MAJOR.MINOR.PATCH**
 
-`cowsay [mensaje]`
+### description
 
-<img src="img/Untitled.png" width="650px">
+Es la cadena que indica lo que hace el proyecto creado
 
+### keywords
 
-[`Atrás: Reto-02`](https://github.com/beduExpert/A2-Backend-Fundamentals-2020/tree/master/Sesion-01/Reto-02) | [`Siguiente: Reto-03`](../Reto-03)
+Son palabras clave que tienen que ver con la descripción o intención del proyecto
+
+### main
+
+Es la cadena que indica el path del archivo principal del proyecto
+
+### scripts
+
+Es un objeto que indica comandos que podemos correr utilizando el proyecto creado, es utilizado aveces para correr el proyecto con varios entornos de desarrollado, o simplemente para evitar el uso de comandos que podemos olvidar a la hora de ejecutar el proyecto
+
+### author
+
+Es una cadena o un objeto con la información del creador del proyecto
+
+### contributors
+
+Es un arreglo de una cadena u objeto con la información de los colaboradores
+
+### license
+
+Es la cadena que especifica el tipo de licencia con que protegeremos el proyecto
+
+### dependencies
+
+Es un objeto que contiene los nombres y versiones de los paquetes instalados 
+
+Para ver más detalles de cómo configurar **package.json** revisa el enlace, son campos más detallados que para está sesión no serán necesarios.

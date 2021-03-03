@@ -1,87 +1,110 @@
-[`Backend Fundamentals`](../../README.md) > [`Sesión 01: Consola`](../README.md) > `Ejemplo 1`
+# Ejemplo 1
 
-# Requerimientos
+## Objetivo
 
-- Tener **instalado** sistema operativo **Linux** o **MacOS**.
+Descargar e instalar la versión recomendada de Nodejs para tu sistema operativo.
 
-# Desarrollo
-
-# Navegación (File system)
-
-- Para navegar en el sistema de archivos de nuestro sistema operativo podemos utilizar **los siguientes comandos:**
-
-## `ls`
-
-Lista el contenido del directorio dónde estamos posicionados.
-
-<img src="img/ls.png" width="650px">
-
-## `cd`
-
-Nos permite posicionarnos en una ruta en específico, o *entrar* en una carpeta.
-
-**Sintaxis básica:** `cd [ruta o nombre de la carpeta]`
-
-<img src="img/cd.png" width="650px">
-
->💡 **Nota:**
->
->Para volver volver atrás en una ruta utilizamos `cd ..`
->
->Explicar la diferencia entre rutas relativas y rutas absolutas.
->
->En windows los comandos tienen diversas variaciones. Si tienes problemas basta con googlear para buscar su equivalente.
->
-
-## `mkdir`
-
-Crea una nueva carpeta.
-
-**Sintaxis básica:** `mkdir [nombre carpeta]`
-
-<img src="img/mkdir.png" width="650px">
-
-## `touch`
-
-Crea un nuevo archivo.
-
-**Sintaxis básica:** `touch [nombre del archivo con extensión]`
-
-<img src="img/tocuh.png" width="650px">
-
-## `cp`
-
-Copia un nuevo archivo.
-
-**Sintaxis básica:** `cp [ruta del archivo a copiar] [nueva ruta]`
-
-<img src="img/cp.png" width="650px">
-
-## `mv`
-
-Mover o renombrar archivos.
-
-**Sintaxis básica:** `mv [ruta del archivo] [nueva ruta / nuevo nombre]`
-
-<img src="img/mv.png" width="650px">
-
-## `rm`
-
-Eliminar un archivo. Con la opción `-r` podemos también eliminar folders y sus contenidos de manera *recursiva.*
-
-**Sintaxis básica:** `rm [opciones] [ruta del archivo]`
-
-<img src="img/rm.png" width="650px">
-
-## `man`
-
-Despliega información del manual de algún comando
-
-**Sintaxis Básica:** `man [nombre del comando]`
-
-El siguiente ejemplo `man man` despliega el manual del mismo comando `man`
-
-<img src="img/man.png" width="650px">
+## Requerimientos
 
 
-[`Atrás: Sesión 01`](https://github.com/beduExpert/A2-Backend-Fundamentals-2020/tree/master/Sesion-01) | [`Siguiente: Reto-01`](../Reto-01)
+- Sistemas operativos soportados: Windows, Mac OS X, Linux, Solaris, FreeBSD, OpenBSD, webOS  
+- Conexión a Internet
+
+
+## Desarrollo
+
+Node.js es un run time (entorno de ejecución) , esto significa que node.js requiere ciertos elementos para poder ejecutarse, a continuación, te damos ejemplos de como se puede realizar la instalación de estos.
+
+# Windows: 
+
+
+### PASO 1 :   
+
+- Entra en el siguiente [link](https://nodejs.org/en/download/)
+
+- Te llevara a la sección de descargas de Node.js, una vez ahí seleccionaras la parte marcada con la flecha roja Instalador de Windows. 
+
+![img/step1.png](img/step1.png)
+
+
+- Al hacer esto, descargara el paquete de instalación en tu computadora.
+
+![img/step2.png](img/step2.png)
+
+### PASO 2 :   
+
+- Ejecuta el programa de instalación, a partir de este punto darás todo en NEXT o siguiente, no te preocupes por los detalles de la instalación, cuando seas más experimentado podrás personalizarla.
+
+### PASO 3 :   
+
+- Una vez realizada la instalación podremos probar un comando para ver si se ha concretado con éxito.
+
+- Para ello vamos a abrir la terminal, presionamos las teclas WINDOWS + R para que aparezca nuestra tarea de ejecución y escribimos en ella cmd.
+
+![img/step3.png](img/step3.png)
+
+- Se abrirá nuestra terminal donde podremos escribir el siguiente comando y damos enter : 
+   
+    `node --version`
+
+- Y nos deberá regresar la versión de nuestro Node.js que acabamos de instalar.
+
+ <h2> Si tienes dudas, este video nos muestra comó realizar la instalación, paso por paso. 🔥</h2>     
+
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/R8moDDltHNk/0.jpg)](https://www.youtube.com/watch?v=R8moDDltHNk)
+
+# MacOS  
+
+### PASO 1 : 
+- Entra en el siguiente [link](https://nodejs.org/en/download/)
+-Te llevara a la sección de descargas de Node.js, una vez ahí seleccionaras la parte marcada con la flecha roja “Instalador de MacOS. 
+
+![img/step1_mac.png](img/step1_mac.png)
+
+- En la sección de descargas encontrarás un paquete con extención pkg.
+
+![img/step2_mac.png](img/step2_mac.png)
+
+### PASO 2 :
+
+- Ejecuta el programa de instalación, a partir de este punto darás todo en NEXT o siguiente, no te preocupes por los detalles de la instalación, cuando seas más experimentado podrás personalizarla.
+
+### PASO 3 :
+
+- Una vez terminada la instalación abriremos una terminal en nuestra mac. y ejecutaremos el siguiente comando : 
+
+    `node -v`
+     
+- Y nos deberá regresar la versión de nuestro Node.js que acabamos de instalar.
+
+<h2> Si tienes dudas, este video nos muestra como realizar la instalación, paso por paso.🔥 </h2>    
+
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/TQks1p7xjdI/0.jpg)](https://www.youtube.com/watch?v=TQks1p7xjdI)
+
+# Ubuntu
+
+### Usando apt
+
+1. Actualizar apt
+
+    ```bash
+    sudo apt update
+    ```
+
+2. Instalar Nodejs desde los repositorios:
+
+    ```bash
+    sudo apt install nodejs
+    ```
+
+3. Instalar npm
+
+    ```bash
+    sudo apt install npm
+    ```
+
+4. Comprobar la instalación
+
+    ```bash
+    node -v
+    ```
