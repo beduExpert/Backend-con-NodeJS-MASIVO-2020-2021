@@ -1,23 +1,19 @@
 # Prework
 
-**Node.js** es un entorno de ejecución de **JavaScript** que ha aportado mucho a este lenguaje, dándole por primera vez la posibilidad de actuar del lado del servidor. Convirtiendo así a JavaScript en un lenguaje que abarca tanto el **Frontend** como **Backend**, lo que se conoce también como **Full Stack**.
+**Node.js** es un entorno de ejecución de **JavaScript** creado en el año 2010, dando la posibilidad de ejecutar código fuera del navegador. Su uso principal es para la creación de servidores (lo que conocemos hoy en día como **Back-end**) pero también puede utilizarse para Aplicaciones Móviles, Aplicaciones de Escritorio, Internet de las Cosas, etc.
 
-Este es un entorno extremadamente popular hoy en día. Tanto, que compañías tan grandes como **PayPal**, la **NASA** y **Netflix** lo utilizan.
-
-
+Node.js es una tecnología extremadamente popular hoy en día, teniendo un aumento en el número de vacantes disponibles en el ámbito laboral.
 
 ## **¿QUÉ ES NODE.JS?**
 
 ![./img/Untitled.png](./img/Untitled.png)
 
-**Node.js** es un entorno de ejecución para **JavaScript** construido con el motor de **JavaScript V8** de **Chrome**. Node.js usa un modelo de operaciones **E/S** sin bloqueo y orientado a eventos, que lo hace liviano y eficiente. El ecosistema de paquetes de Node.js, **npm**, es el ecosistema mas grande de librerías de código abierto en el mundo.
+**Node.js** es un *entorno de ejecución* para **JavaScript** construido con el motor de **JavaScript V8** de **Chrome**. Node.js usa un modelo de concurrencia para manejar operaciones de **Entrada y Salida (E/S)** ssin bloqueo y orientado a eventos, que lo hace liviano y eficiente. El ecosistema de paquetes de Node.js, **npm**, es el ecosistema mas grande de librerías de código abierto en el mundo.
 
 [Documentación | Node.js](https://nodejs.org/es/docs/)
 
 
 ## **¿PARA QUÉ SIRVE NODE.JS?**
-
-En el mundo informático, existen diferentes métodos de administración de aplicaciones de alto nivel para el back-end, node.js es un runtime (Entorno de ejecución), que nos permite tener una alternativa de servidor, pero basado en el lenguaje JavaScript.   
 
 Node.js no es un lenguaje de programación, solo ejecuta Javascript sin la necesidad de un navegador, esto permite que podamos utilizar este lenguaje como herramienta de interoperabilidad entre la parte del front end y la del back-end como aplicación isomórfica (Una aplicación isomórfica es aquella que tiene el mismo lenguaje tanto de front end, como de back end), lo cual nos da las bondades del lenguaje, por mencionar algunos:  escalabilidad, ligereza, estabilidad, y de fácil entendimiento.   
 
@@ -25,24 +21,7 @@ Javascript es un lenguaje no tipado, es decir, no usa un modelo rígido de estru
 
 Al ser este un lenguaje tan ligero, la velocidad con la que responde es tan rápida, que se considera perfecto para todo tipo de aplicaciones web y de REAL TIME (tiempo real).   
 
-El poder de sus aplicaciones no tiene límites, puede ser aplicado desde Robótica, Inteligencia Artificial, Seguridad Monetaria, Blockchain hasta aplicativos live Cams, Chats, Foros, E-commerce, Cms, GPS, etc. 💪
-
-
-## **¿QUÉ ES UN ENTORNO DE EJECUCIÓN?**
-
-Un **entorno de ejecución** (runtime environment en inglés) es un estado de **máquina virtual** que suministra servicios para los procesos de un programa de computadora que se está ejecutando. 
-
-<p align="center">
-  <a href="https://nodejs.org/">
-    <img
-      alt="Node.js"
-      src="./img/what.jpg"
-      width="400"
-    />
-  </a>
-</p>
-
-Es decir, Node.js requiere ciertas herramientas para ejecutarse, pero muchas de estas pueden no estar en tu sistema operativo, entones node.js en ves de pedirte que instales todo lo que necesita, el virtualiza todo lo que le hace falta y con eso anda sin pedirte nada mas, el trae su balon para jugar.   
+El poder de sus aplicaciones no tiene límites, puede ser aplicado desde Robótica, Inteligencia Artificial, Seguridad Monetaria, Blockchain hasta aplicativos live Cams, Chats, Foros, E-commerce, Cms, GPS, etc. 💪   
 
 
 ### CARACTERÍSTICAS DE NODE.JS
@@ -91,7 +70,7 @@ Es decir, Node.js requiere ciertas herramientas para ejecutarse, pero muchas de 
 
     ![./img/Untitled%203.png](./img/Untitled%203.png)
 
-    **npm** es el gestor de paquetes que viene incluído en la instalación de Node.js, así que para instalarlo simplemente tendrás que instalar NodeJS. 
+    **npm** es el gestor de paquetes que viene incluído en la instalación de Node.js.
 
     Pero… **¿Qué son los paquetes?**   
 

@@ -20,7 +20,7 @@ Instalación de Node
 
 ### ¿Qué es un callback?
 
-En Javascript un **Callback** , es aquella función que se envia como parámetro a otra función.
+En Javascript un **Callback** , es una función que se ejecuta después de haber realizado una tarea en particular. Normalmente se envía como parámetro de otra función.
 
 ![Alt Text](https://i.pinimg.com/originals/1e/02/8d/1e028db0ea4defc218cb913825174b53.gif)
 

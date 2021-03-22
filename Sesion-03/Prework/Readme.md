@@ -1,12 +1,5 @@
 # Prework
 
-**Recuerda:**
-JavaScript es multiparadigma,multiparadigma es decir que es el único lenguaje capaz de ejecutarse en las 3 capas de una aplicación:
-
-- **Frontend** (con JavaScript).
-- **Backend** (con Node.js).
-- **Persistencia de Datos** (con MongoDB, Couch DB, Firebase, etc).
-
 ## **¿QUÉ ES LO QUE NODEJS TIENE DE DIFERENTE A OTROS LENGUAJES DE PROGRAMACIÓN?**
 
 Bueno, Node tiene algo muy distintivo de los demás. El cual es trabajar con un **solo hilo**. Si tienes tiempo programando con otros lenguajes, sabrás que muchos de ellos pueden usar más de un hilo. Esto se debe a que un lenguaje como **Java**, se ejecuta de manera secuencial y cuando encuentra un proceso que lleva mucho tiempo para ejecutarse, el programa debe esperar forzosamente a que el proceso termine para seguir ejecutando todo el código que hay después de él.
@@ -25,7 +18,7 @@ Como desarrolladores de Javascript debemos tener mucho cuidado al programar de n
 
 La **asincronía** es uno de los pilares fundamentales de *Javascript*, ya que es un lenguaje de programación de un sólo **subproceso** o **hilo** (*single thread*), lo que significa que sólo puede **ejecutar una cosa a la vez**.
 
-Si bien los idiomas de un sólo hilo **simplifican la escritura** de código porque no tiene que preocuparse por los **problemas** de **concurrencia**, esto también significa que **no** puede **realizar operaciones largas** como el acceso a la red sin bloquear el hilo principal.
+Si bien los lenguajes de programación de un sólo hilo **simplifican la escritura** de código porque no tiene que preocuparse por los **problemas** de **concurrencia**, esto también significa que **no** puede **realizar operaciones largas** como el acceso a la red sin bloquear el hilo principal.
 
 Imagina que solicitas datos de una *API*. Dependiendo de la situación, el servidor puede tardar un tiempo en procesar la solicitud mientras bloquea el hilo principal y hace que la página web no responda.
 
@@ -60,13 +53,13 @@ Un **hilo** la unidad básica de **ejecución de un proceso**, cada que abres un
 
 ### **Concurrencia:**
 
-La concurrencia es la capacidad del CPU para **ejecutar más de un proceso al mismo tiempo**.
+La concurrencia es la capacidad de un procesador para simular la ejecución de múltiples programas al mismo tiempo. El CPU ejecuta bloques pequeños de instrucciones de un programa de manera tan rápida que ante nuestros ojos parece que todos los programas de nuestra computadora son ejecutados al mismo tiempo.
 
 ![img/Untitled%201.png](img/Untitled%201.png)
 
 ### **Paralelismo:**
 
-El paralelismo sigue la filosofía de **divide y vencerás**, ya que consiste en tomar un único problema, y mediante concurrencia llegar a una solución más rápido. **El paralelismo lo que hace es tomar el problema inicial, dividir el problema en fracciones más pequeñas, y luego cada fracción es procesada de forma concurrente**, aprovechando al máximo la capacidad del procesador para resolver el problema.
+El paralelismo es la capacidad de ejecutar programas de manera simultanea. A diferencia de la concurrencia, el paralelismo es realmente ejecutar múltiples cosas al mismo tiempo. Hoy en día esto es posible gracias a que nuestras computadoras y dispositivos móviles tienen **cores**, que son múltiples procesadores.
 
 ![img/Untitled%202.png](img/Untitled%202.png)
 
@@ -160,7 +153,7 @@ Para controlar la asincronía, JavaScript cuenta con algunos mecanismos:
 
 ### ***Callbacks***
 
-Un ***Callback*** (llamada de vuelta) es una función que se ejecutará **después** de que otra lo haga.
+Un ***Callback*** (llamada de vuelta) es una función que se ejecutará **después** de terminar una acción determinada (por ejemplo descargar una imagen, consultar recursos externos, realizar consultas a bases de datos).
 
 Es un mecanismo para asegurar que cierto código **no se ejecute** hasta que otro haya terminado.
 

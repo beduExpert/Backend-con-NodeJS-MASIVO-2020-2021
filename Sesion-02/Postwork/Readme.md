@@ -21,11 +21,3 @@ Después de instalarlo podremos ejecutar nuestro script con el comando
 Ahora después de guardar cada cambio en tu código podrás ver cómo el script vuelve a ejecutarse automáticamente.
 
 Puedes revisar su uso en la [documentación oficial.](https://www.npmjs.com/package/nodemon)
-
-## Ejercicio
-
-Ya has utilizado el módulo `cron` para crear scripts que se ejecuten de manera agendada.
-
-¿Que hace falta para que nuestro script pueda correr diario y de manera continua para guardar la imagen del día de la NASA?
-
-Modifica el script de descarga de imagen de la NASA para que puedas obtener cada día una nueva imagen y guardarla en la carpeta `/img`
