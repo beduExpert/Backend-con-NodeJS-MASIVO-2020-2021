@@ -10,7 +10,7 @@ Tener instalado Nodejs
 
 ## Desarrollo
 
-Creamos un archivo llamado `ìndex.js` en nuestra carpeta de trabajo (puedes utilizar la terminal si lo deseas). Después vamos a copiar el siguiente código que es la implementación del problema **FizzBuzz**:
+Creamos un archivo llamado `index.js` en nuestra carpeta de trabajo (puedes utilizar la terminal si lo deseas). Después vamos a copiar el siguiente código que es la implementación del problema **FizzBuzz**:
 
 ```jsx
 function fizzBuzz() {
