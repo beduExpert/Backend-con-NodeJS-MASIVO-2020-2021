@@ -12,7 +12,7 @@
 
   ## Publicar un módulo en NPM
 
-  Para publicar un módulo en NPM es necesario una cuenta y que puedes crear desde el link [https://www.npmjs.com/signup](https://www.npmjs.com/signup) el siguiente artículo puede ser una guía similar a lo que se hizo en la sesión (configurar package.json y preparar tu código) y además de ello los pasos para publicar un módulo en el repositorio.
+  Para publicar un módulo en NPM es necesario una cuenta y que puedes crear desde el [link](https://www.npmjs.com/signup) el siguiente artículo puede ser una guía similar a lo que se hizo en la sesión (configurar package.json y preparar tu código) y además de ello los pasos para publicar un módulo en el repositorio.
 
   También, es importante mantener un módulo actualizado para mantenerlo estable y resolver los issues reportados por los usuarios, este articulo hace mención de cómo subir versiones nuevas.
 
