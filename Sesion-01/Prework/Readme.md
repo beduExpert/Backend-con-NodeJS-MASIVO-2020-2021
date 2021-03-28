@@ -86,7 +86,7 @@ En windows los comandos **tienen diversas variaciones**. Si tienes problemas bas
 
 ## ¿Qué es NPM?
 
-  ![npm](https://www.npmjs.com) es el gestor de paquetes que viene incluído en la instalación de Node.js, así que para instalarlo simplemente tendrás que instalar NodeJS.
+  [npm](https://www.npmjs.com) es el gestor de paquetes que viene incluído en la instalación de Node.js, así que para instalarlo simplemente tendrás que instalar NodeJS.
 
   Pero… **¿Qué es esto de un gestor de paquetes?** Un gestor de paquetes es un conjunto de utilidades o herramientas diseñadas para mejorar algo, en el caso de npm son mejoras para el entorno de Node.js.
     
