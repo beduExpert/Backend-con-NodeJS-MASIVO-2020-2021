@@ -1,6 +1,6 @@
 # Prework
 
-## Objetivo
+### Objetivo
 
   * Conocer qué es Node.js
   * ¿Para qué sirve Node.js?

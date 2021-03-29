@@ -1,22 +1,36 @@
 # Prework
 
-Manipulando Archivos con Node.js
+### Objetivo
+
+* Entender el por qué de los módulos esenciales de Node.js y en posibles casos de uso.
+
+## Sesión 02
+
+### **Módulos esenciales de Node.js**
+
+Como se ha mencionado anteriormente, con la instalación de Node.js se incluyen módulos que llamaremos **módulos esenciales** y pueden ser utilizados en cualquier parte del código.
+
+A continuación mencionaremos dos módulos esenciales muy importantes.
+
+### **Manipulando Archivos con Node.js**
 
 Con Node JS podemos manipular archivos de manera sencilla, ya sea **subir**, **editar**, **eliminar**, **crear**, etc. un archivo en el servidor, por otro lado también puedes manipular las rutas de los archivos, copiar archivos, obtener una respuesta cuando realices una determinada acción con un archivo en tu servidor, en este artículo te explicaremos las maneras de trabajar con archivos en Node JS.
 
-## Importación del módulo **`fs`**
+### Importación del módulo **`fs`**
 
 Igual que hacemos con otros módulos de Node, hay que procesar el correspondiente `require` para tener disponibles las funciones de acceso al sistema de ficheros. Se encuentran en el module llamado `fs` y lo vamos a importar con el siguiente código:
 
 ``` jsx
-var fs = require('fs');
+const fs = require('fs');
 ```
+
+**Nota:** El nombre del objeto para operar con el sistema de archivos lo hemos guardado en una variable llamada fs. Podrías usar el nombre de variable que tú desees. Observa además que en vez de **var** estamos usando **const**, que es la forma más habitual de declarar variables en **ES6**.
 
 ## **Crear Archivo**
 
 El método **fs.appendFile()** se usa para agregar **asincrónicamente** los datos dados a un archivo. Se crea un nuevo archivo si no existe. El parámetro de opciones se puede usar para modificar el comportamiento de la operación. 
 
-Si el archivo existe este es reemplazado por el nuevo archivo creado.
+**Nota**: Si el archivo existe este es reemplazado por el nuevo archivo creado.
 
 **Sintaxis:**
 
@@ -37,19 +51,10 @@ Si el archivo existe este es reemplazado por el nuevo archivo creado.
 
 ```jsx
 fs.appendFile('primer_Archivo.html', 'primerArchivo', (err) => {
-
-if (err) throw err;
-
-console.log('Archivo creado satisfactoriamente');
-
+  if (err) throw err;
+  console.log('Archivo creado satisfactoriamente');
 });
 ```
-
-**Nota:**
-
-Puedes especificarle el tipo de **codificación** del archivo
-
-`fs.appendFile('tortasdechocolate.xls', 'tortas', (err) => {`
 
 ## Leer Archivo
 
@@ -81,12 +86,6 @@ fs.readFile('documentos/primer_Archivo.html', (err, data) => {
   console.log(data);
 });
 ```
-
-**Nota:**
-
-Si no le indicas el tipo de codificación, entonces obtendrás el **buffer** de datos en bruto
-
-`fs.readFile('documentos/primer_Archivo.xls', 'utf8', callback);` 
 
 ## Actualizar Archivo
 
@@ -171,7 +170,7 @@ En el caso de Node.Js, debemos **configurar manualmente** su comportamiento, es 
 
 Lo primero que vamos a hacer es crear un archivo con el nombre de app.js y, una vez dentro, vamos a requerir un módulo del core de Node llamado http.
 
-```bash
+```jsx
 const http = require('http');
 ```
 
@@ -179,7 +178,7 @@ const http = require('http');
 
 Luego crearemos dos variables, una para el `host` y otra para el `puerto`, ya que el servidor necesitará de estos datos.
 
-```bash
+```jsx
 const host = '127.0.0.1';
 const port = 3000;
 ```
@@ -188,7 +187,7 @@ Vamos a correr nuestro servidor en nuestra máquina local, por lo tanto con la v
 
 Lo próximo que vamos a hacer es llamar al método **createServer** que devuelve una nueva instancia de **http.Server.**
 
-```bash
+```jsx
 const server = http.createServer((req, res) => {
   res.statusCode = 200;
   res.setHeader('Content-Type', 'text/plain');
@@ -202,7 +201,7 @@ Al método **createServer** le pasamos un **callback** con dos parámetros **req
 
 Luego vamos a llamar al método **listen** que hará la magia de concretar la conexión.
 
-```bash
+```jsx
 server.listen(port, host, () => {
   console.log(`Servidor corriendo en http://${host}:${port}`);
 });
