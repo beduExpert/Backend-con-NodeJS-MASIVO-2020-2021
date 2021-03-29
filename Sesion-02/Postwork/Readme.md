@@ -1,10 +1,14 @@
 # Postwork
 
-## Objetivos
+### Requisitos
 
-Conocer herramientas de terceros para facilitar el desarrollo y mantener nuestros scripts funcionando.
+* Tener Node instalado.
 
-## Desarrollo
+### Objetivos
+
+* Conocer herramientas de terceros para facilitar el desarrollo y mantener nuestros scripts funcionando.
+
+## Sesión 02
 
 ### Nodemon
 

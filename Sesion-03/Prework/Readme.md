@@ -1,76 +1,74 @@
 # Prework
 
-## **¿QUÉ ES LO QUE NODEJS TIENE DE DIFERENTE A OTROS LENGUAJES DE PROGRAMACIÓN?**
+### Objetivo
+* ¿Qué es Asincronía, concurrencia y paralelismo?
+* ¿Qué es Bloqueante y No Bloqueante?
+* ¿Qué es Síncrono y Asíncrono?
+* Definición de Callbacks, Promises y Async / Await
+* Definición de Event Loop, Call Stack y Calbaback Queue
 
-Bueno, Node tiene algo muy distintivo de los demás. El cual es trabajar con un **solo hilo**. Si tienes tiempo programando con otros lenguajes, sabrás que muchos de ellos pueden usar más de un hilo. Esto se debe a que un lenguaje como **Java**, se ejecuta de manera secuencial y cuando encuentra un proceso que lleva mucho tiempo para ejecutarse, el programa debe esperar forzosamente a que el proceso termine para seguir ejecutando todo el código que hay después de él.
+## Sesión 03
 
-Eso, de alguna manera se puede solucionar, creando nuevos hilos y hacer que ciertas tareas se ejecuten en segundo plano para continuar con la ejecución del programa.
+### **¿QUÉ ES LO QUE NODEJS TIENE DE DIFERENTE A OTROS LENGUAJES DE PROGRAMACIÓN?**
 
-Pues, aquí es donde entra Nodejs y lo innovador que tiene. Cosas como el ***Event loop**, **Call Stack**, **Programación Asíncrona**, **Callbacks**, etc.* Todos estos son conceptos en común que son la base del funcionamiento de Nodejs y creo que es indispensable saber cómo y porqué trabaja de esta manera. Así, podremos sacarle el máximo provecho a la herramienta y escribir un mejor código.
+Cuando resolvemos un problema de software, una de las razones por las que nos inclinamos hacia la elección de un lenguaje determinado es por su **modelo de concurrencia**. El modelo de concurrencia de un lenguaje de programación define el comportamiento y las capacidades que tiene cuando se trata de manejar a múltiples usuarios al mismo tiempo.
 
-Bueno, empecemos ahora por explicar como trabaja Nodejs.
+Existen diferentes modelos de concurrencia, cada uno con sus ventajas y desventajas, teniendo como el más común **el modelo de multihilos (multi threads).**
 
-Como mencione anteriormente, Node, trabaja con un solo hilo. Esto significa que solo **ejecutará un proceso a la vez.**
+Un **hilo de ejecución (thread)** es la capacidad que tiene el procesador para ejecutar un bloque de instrucciones de un programa. Nuestras computadoras ejecutan múltiples programas al mismo tiempo, es decir, tiene múltiples hilos de ejecución disponibles para ejecutar bloques de código de diferentes programas. Traducido a lo que conocemos como Back-end, esto brinda la posibilidad de atender peticiones de múltiples usuarios al mismo tiempo.
 
-Como desarrolladores de Javascript debemos tener mucho cuidado al programar de no bloquear este único hilo. Aquí entra la parte de **Blocking** y **Non-Blocking**.
+Lenguajes de programación como Java o Python tienen este modelo de concurrencia, pero JavaScript no. A diferencia de otros lenguajes, JavaScript trabaja con **un solo hijo de ejecución (single thread)**, es decir, solo puede realizar un proceso a la vez.
 
-## Asincronía
+Imagina que tienes una tienda en línea, si tu modelo de concurrencia fuera **single threaded** entonces una persona podría comprar al mismo tiempo, no habría posibilidad de que dos usuarios estuvieran interactuando con la tienda, agregando productos al carrito o incluso pagando al mismo tiempo. Con un modelo **multi threaded**, cada usuario sería “atendido” por un hilo de ejecución, permitiendo que más de un usuario pueda interactuar con la tienda.
+
+Entonces… ¿cómo es posible que JavaScript sea considerado como uno de los lenguajes más rápidos y que soporta una gran cantidad de usuarios **si solamente cuenta con un solo hilo de ejecución**? La respuesta es que su modelo de concurrencia se basa en el **loop de eventos (Event Loop).**
+
+A continuación se explicarán los conceptos que hay detrás de Node.js.
+
+### Asincronía
 
 La **asincronía** es uno de los pilares fundamentales de *Javascript*, ya que es un lenguaje de programación de un sólo **subproceso** o **hilo** (*single thread*), lo que significa que sólo puede **ejecutar una cosa a la vez**.
 
-Si bien los lenguajes de programación de un sólo hilo **simplifican la escritura** de código porque no tiene que preocuparse por los **problemas** de **concurrencia**, esto también significa que **no** puede **realizar operaciones largas** como el acceso a la red sin bloquear el hilo principal.
-
-Imagina que solicitas datos de una *API*. Dependiendo de la situación, el servidor puede tardar un tiempo en procesar la solicitud mientras bloquea el hilo principal y hace que la página web no responda.
-
-Ahí es donde entra en juego la asincronía que permite realizar largas solicitudes de red sin bloquear el hilo principal.
-
 *JavaScript* fue diseñado para ser ejecutado en navegadores, trabajar con peticiones sobre la red y procesar las interacciones de usuario, al tiempo que mantiene una interfaz fluida.
 
-***Javascript*** usa un **modelo** **asíncrono** y **no bloqueante**, con un ***loop*** de **eventos** implementado en un solo hilo, (***single thread***) para operaciones de entrada y salida (***input/output***).
-
-Gracias a esta solución, *Javascript* es altamente concurrente a pesar de emplear un solo hilo.
+*Javascript* usa un **modelo** **asíncrono** y **no bloqueante**, con un ***loop*** de **eventos** implementado en un solo hilo, (***single thread***) para operaciones de entrada y salida (***input/output***).
 
 ![img/Untitled.png](img/Untitled.png)
 
 Antes de explicar como funciona el modelo de JavaScript es importante entender algunos conceptos:
 
-- Procesamiento Single thread (Hilo único) y Multi thread (Hilos múltples).
 - Operaciones de CPU y Operaciones de I/O (Entrada y Salida).
 - Operaciones Concurrentes y Paralelas.
 - Operaciones Bloqueantes y No Bloqueantes.
 - Operaciones Síncronas y Asíncronas.
 
-## Single thread y Multi thread
-
-Un **hilo** la unidad básica de **ejecución de un proceso**, cada que abres un programa como el navegador o tu editor de código, **se levanta un proceso en tu computadora** e internamente este puede tener **uno** o **varios** hilos (threads) ejecutándose para que el proceso funcione.
-
-## Operaciones de CPU y de Entrada y Salida
+### Operaciones de CPU y de Entrada y Salida
 
 - **Operaciones CPU:** Aquellas que pasan el mayor tiempo consumiendo Procesos del CPU, **por ejemplo**, la escritura de ficheros.
 - **Operaciones de Entrada y Salida:** Aquellas que pasan la mayor parte del tiempo esperando la respuesta de una petición o recurso, como la solicitud a una **API** o **BD**.
 
-## Concurrencia y Paralelismo
+### Concurrencia y Paralelismo
 
-### **Concurrencia:**
+#### **Concurrencia:**
 
 La concurrencia es la capacidad de un procesador para simular la ejecución de múltiples programas al mismo tiempo. El CPU ejecuta bloques pequeños de instrucciones de un programa de manera tan rápida que ante nuestros ojos parece que todos los programas de nuestra computadora son ejecutados al mismo tiempo.
 
 ![img/Untitled%201.png](img/Untitled%201.png)
 
-### **Paralelismo:**
+#### **Paralelismo:**
 
-El paralelismo es la capacidad de ejecutar programas de manera simultanea. A diferencia de la concurrencia, el paralelismo es realmente ejecutar múltiples cosas al mismo tiempo. Hoy en día esto es posible gracias a que nuestras computadoras y dispositivos móviles tienen **cores**, que son múltiples procesadores.
+El paralelismo es la capacidad de ejecutar programas de manera simultanea. A diferencia de la concurrencia, el paralelismo es realmente ejecutar múltiples cosas al mismo tiempo. Hoy en día esto es posible gracias a que nuestras computadoras y dispositivos tienen **cores.**
 
 ![img/Untitled%202.png](img/Untitled%202.png)
 
-## Bloqueante y No Bloqueante
+### Bloqueante y No Bloqueante
 
 Se refiere a como la **fase de espera** de las operaciones afectan a nuestra aplicación:
 
 - **Bloqueante:** Son operaciones que **no devuelven** el control a nuestra aplicación hasta que se ha **completado**. Por tanto el **thread** queda bloqueado en estado de espera.
 - **No Bloqueante:** Son operaciones que **devuelven** **inmediatamente** el control a **nuestra aplicación**, independientemente del resultado de esta. En caso de que se haya completado, devolverá los datos solicitados. En caso contrario (si la operación no ha podido ser satisfecha) podría devolver un **código de error.**
 
-## Síncrono y Asíncrono
+### Síncrono y Asíncrono
 
 -Se refiere a **¿cuándo tendrá lugar la respuesta?:**
 
@@ -86,7 +84,7 @@ Se refiere a como la **fase de espera** de las operaciones afectan a nuestra apl
 
 Cada operación se hace de una vez, bloqueando el flujo de ejecución, el hilo es bloqueado mientras espera la respuesta, cuando esta se procesa pasa a la siguiente operación y así sucesivamente al terminar todas las operaciones.
 
-```bash
+```jsx
 console.log("Inicio");
 
 function dos() {
@@ -102,20 +100,22 @@ function uno() {
 uno();
 console.log("Fin");
 
-//Salida
+/*
+--- Salida ---
 
-Inicio
-Uno
-Dos
-Tres
-Fin
+  Inicio
+  Uno
+  Dos
+  Tres
+  Fin
+*/
 ```
 
 ### ***JavaScript* Asíncrono**
 
 Cada operación se ejecuta y devuelve inmediatamente el control al hilo, evitando el bloqueo, cuando cada operación termine se enviará una notificación de que ha terminado, es entonces cuando la respuesta se encolará para ser procesada.
 
-```bash
+```jsx
 console.log("Inicio");
 
 function dos() {
@@ -135,15 +135,17 @@ function uno() {
 uno();
 console.log("Fin");
 
-//Salida
-Inicio
-Tres
-Fin
-Uno
-Dos
+/*
+--- Salida ---
+  Inicio
+  Tres
+  Fin
+  Uno
+  Dos
+*/
 ```
 
-## Mecanismos asíncronos en JavaScript
+### Mecanismos asíncronos en JavaScript
 
 Para controlar la asincronía, JavaScript cuenta con algunos mecanismos:
 
@@ -151,9 +153,9 @@ Para controlar la asincronía, JavaScript cuenta con algunos mecanismos:
 - Promises.
 - Async / Await.
 
-### ***Callbacks***
+#### ***Callbacks***
 
-Un ***Callback*** (llamada de vuelta) es una función que se ejecutará **después** de terminar una acción determinada (por ejemplo descargar una imagen, consultar recursos externos, realizar consultas a bases de datos).
+Un ***Callback*** (llamada de vuelta) es una función que se ejecutará después de que otra lo haga.
 
 Es un mecanismo para asegurar que cierto código **no se ejecute** hasta que otro haya terminado.
 
@@ -163,13 +165,9 @@ Al ser *JavaScript* un lenguaje orientado a eventos, las *callbacks* son una
 
 ![img/Untitled%203.png](img/Untitled%203.png)
 
-```bash
-
-```
-
 Por suerte esto se ha podido resolver utilizando librerías como [async](https://www.npmjs.com/package/async), o empleando promesas con librerías como [Q](https://www.npmjs.com/package/q).
 
-### ***Promises***
+#### ***Promises***
 
 Una promesa es un objeto que representa el resultado de una **operación asíncrona** y tiene 3 estados posibles:
 
@@ -181,7 +179,7 @@ Tienen la particularidad de que se pueden **encadenar** (*then*), siendo el resu
 
 Las promesas mantienen un código **más legible** y **mantenible** que las ***callbacks***, además tienen un mecanismo para la **detección de errores** (*catch*) que es posible usar en cualquier parte del flujo de datos.
 
-### **Async / Await**
+#### **Async / Await**
 
 Las promesas fueron una gran **mejora respecto a las *callbacks*** para controlar la **asincronía** en *JavaScript*, sin embargo pueden llegar a ser muy verbosas a medida que se requieran más y más ***.then()*.**
 
@@ -193,7 +191,7 @@ Podemos declarar como *async* funciones con nombre, anónimas o funciones flec
 
 La palabra ***await*** debe ser usado siempre dentro de una función declarada como *async* y esperará de forma asíncrona y **no bloqueante** a que una promesa se resuelva o rechace.
 
-## EVENT LOOP
+### EVENT LOOP
 
 El event loop es el que se encarga de implementar las operaciones asíncronas o el non-blocking. El event loop corre en el único hilo que existe en Node y como mencionamos anteriormente, al bloquear el único hilo de node, estamos bloqueando el event loop.
 
@@ -201,11 +199,11 @@ El event loop es el que se encarga de implementar las operaciones asíncronas o 
 
 Libuv** (una librería escrita en C), es el que permite que el event loop funcione y todo el comportamiento asíncrono en Node. Puedes conocer más sobre esta librería ingresando a su [sitio oficial](https://libuv.org).
 
-## **CALL STACK**
+### **CALL STACK**
 
 Cada vez que una función va a ser ejecutada pasa por el call stack. Como ya sabemos, al trabajar con operaciones asíncronas, estas poseen callbacks, que se ejecutarán una vez el proceso de la operación haya terminado y que se irán añadiendo al callback queue.
 
-## **CALLBACK QUEUE**
+### **CALLBACK QUEUE**
 
 Aquí se agregan los callback o funciones que se ejecutan una vez las operaciones asíncronas hayan terminado. Se utiliza el método FIFO (first input, first output), traducido, primero en entrar, primero en salir.
 
@@ -283,8 +281,6 @@ Al no encontrar nada más el **event loop** dentro del **call stack**, el progra
 // Hi, I'm executed
 ```
 
----
-
-La documentación [oficial de nodejs](https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/) será tu mejor amiga por si tienes dudas acerca de un tema en particular.
+**Recuerda:** La documentación [oficial de nodejs](https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/) será tu mejor amiga por si tienes dudas acerca de un tema en particular.
 
 -

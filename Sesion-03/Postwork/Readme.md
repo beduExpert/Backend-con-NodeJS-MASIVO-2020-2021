@@ -1,14 +1,14 @@
 # Postwork
 
-## Objetivo
+### Requisitos
 
-Conocer alternativas importantes que ayudarían a crear mejor código según sea la necesidad
+* Tener Node instalado.
 
-## Instrucciones
+### Objetivo
 
-- Lee el siguiente material y ve los siguientes videos
+* Conocer alternativas importantes que ayudarían a crear mejor código según sea la necesidad
 
-## Desarrollo
+## Sesión 03
 
 ### Generadores
 
