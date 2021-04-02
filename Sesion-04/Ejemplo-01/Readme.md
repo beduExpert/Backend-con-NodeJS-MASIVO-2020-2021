@@ -1,67 +1,33 @@
 # Ejemplo 1
+
 ## Objetivo
 
-Conocer las herramientas que incluye NodeJS por defecto para realizar aplicaciones de línea de comandos. 
-
-Instalar y conocer algunas herramientas desarrolladas por terceros que nos ayudaran a desarrollar aplicaciones CLI.
-
-## Requerimientos
-
-- NodeJS instalado y funcionando en nuestra terminal
-- Editor de código
+Analizar las peticiones HTTP a través del navegador.
 
 ## Desarrollo
 
-### El objeto `process.argv`
+* Abre tu navegador favorito. Para este ejemplo, las capturas serás de Opera GX.
 
-En NodeJs el objeto `process.argv` es un objeto global que nos traerá un arreglo de cadenas que representan los argumentos que son pasados a un programa para su ejecución.
+* Abre las **herramientas de desarrollador** de tu navegador. Dependiendo tu navegador puedes hacerlo de la siguiente manera:
 
-- El primer elemento siempre será la ruta en la que se encuetra el ejecutable de NodeJS.
-- El segundo elemento será la ruta del archivo que se está ejecutando.
-- Los subsecuentes elementos son los argumentos que el usuario está enviando de manera ordenada.
-1. Crearemos un nuevo proyecto en un nuevo folder y crearemos un archivo `calculadora.js`.
-2. Pasaremos argumentos de una manera muy similar a nuestro script `suma.js` de la sesión 2, pero esta vez el primer argumento después del nombre de nuestro script será el nombre de una operación (`suma`, `resta`, `multiplica` o `divide`), y los siguientes argumentos serán dos números a operar.
-3. Guarda el siguiente código en el archivo `calculadora.js`:
+  + **Google Chrome / Opera:** Presiona `ctrl` + `shift` + `J`.
 
-```jsx
-const tipoOperacion = process.argv[2];
-const num1 = Number(process.argv[3]);
-const num2 = Number(process.argv[4]);
+  + **Firefox:** Presiona `ctrl` + `shift` + `Z`.
 
-switch (tipoOperacion) {
-  case 'suma':
-    console.log(`${num1} + ${num2} = ${num1 + num2}`)
-    break;
-  case 'resta':
-    console.log(`${num1} - ${num2} = ${num1 - num2}`)
-    break;
-  case 'multiplica':
-    console.log(`${num1} * ${num2} = ${num1 * num2}`)
-    break;
-  case 'divide':
-    console.log(`${num1} / ${num2} = ${num1 / num2}`)
-    break;
-  default:
-    break;
-}
-```
+  + **Microsoft Edge / Internet Explorer:** Presiona `f12`.
 
-### El módulo readline
+![Herramientas de desarrollador](./img/img1.png)
 
-Para tener una entrada asíncrona por parte del usuario cuándo nuestro código se está ejecutando utilizaremos la siguiente línea:
+* Selecciona la pestaña de `Network / Red`.
 
-1. Guarda y ejecuta el siguiente código
+![Pestaña de red](./img/img2.png)
 
-    ```jsx
-    const readline = require('readline').createInterface({
-      input: process.stdin,
-      output: process.stdout
-    });
+* Con las **herramientas de desarrollador** abierta ingresa a la página de [Is It Christmas](https://isitchristmas.com).
 
-    readline.question('¿Quién eres?', name => {
-      console.log(`Hola ${name}!`);
-      readline.close();
-    });
-    ```
+![Is It Christmas](./img/img3.png)
 
-2. Analiza el comportamiento de esta línea. ¿Qué funcionalidades podremos mejorar nuestra calculadora con esta función?
+* En las **herramientas de desarrollador** encontrarás secciones para analizar el **HTTP Request** (en `Google Chrome / Opera` lo encontrarás como _Headers_) y el **HTTP Response** (en `Google Chrome / Opera` lo encontrarás como _Response_).
+
+![HTTP Request](./img/img4.png)
+
+![HTTP Response](./img/img5.png)

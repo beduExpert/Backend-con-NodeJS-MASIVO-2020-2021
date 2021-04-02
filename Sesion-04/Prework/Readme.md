@@ -10,6 +10,8 @@
 
 El protocolo HTTP es uno de los más importantes de todos los tiempos, ya que definió la manera en la que dos dispositivos se pueden comunicar a través de internet.
 
+![Internet](./img/img1.png)
+
 Lanzado en el año 1991, el protocolo HTTP establece que dos dispositivos pueden comunicarse a través del envío de mensajes con una estructura bien definida.
 
 Antes de continuar con los detalles de los mensajes, es necesario comprender cómo podemos establecer comunicación entre dos dispositivos conectados a internet en primer lugar.
@@ -21,11 +23,16 @@ El protocolo **TCP/IP** fue creado en el año de 1973 y establece que dos dispos
 **La red más grande conocida hasta la fecha es internet,** por lo que nuestras computadoras, celulares, televisores y cualquier aparato con acceso a internet tiene asignada una dirección IP.
 Las direcciones IP es una secuencia de 4 números separados por un punto (.) que va de un rango de 0 a 255. Por ejemplo: **197.240.0.5.**
 
+![Protocolo TCP/IP](./img/img2.png)
+
+
 ### **Protocolo HTTP**
 
 Una vez sabiendo que dos dispositivos establecen comunicación a través de su dirección IP entonces resta preguntarnos ¿cómo funciona el intercambio de mensajes?.
 
 El protocolo HTTP define dos tipos de mensajes, **un mensaje para la petición de recursos y otro mensaje para la respuesta.**
+
+![Protocolo HTTP](./img/img3.png)
 
 Para el mensaje de petición se establece la siguiente estructura:
 En la primera línea encontramos la URL solicitada, la versión de HTTP y el tipo de comando o acción que se está solicitando.

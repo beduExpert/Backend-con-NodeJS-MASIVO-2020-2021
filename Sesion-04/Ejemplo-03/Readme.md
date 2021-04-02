@@ -2,67 +2,42 @@
 
 ## Objetivo
 
-Conocer las herramientas que incluye NodeJS por defecto para realizar aplicaciones de línea de comandos. 
-
-Instalar y conocer algunas herramientas desarrolladas por terceros que nos ayudaran a desarrollar aplicaciones CLI.
-
-## Requerimientos
-
-- NodeJS instalado y funcionando en nuestra terminal
-- Editor de código
+Comprender el impacto que tienen los encabezados de HTTP en el procesamiento del navegador.
 
 ## Desarrollo
 
-### El objeto `process.argv`
+* Crea un proyecto de **npm** ejecutando el comando `npm init` o `npm init -y`.
 
-En NodeJs el objeto `process.argv` es un objeto global que nos traerá un arreglo de cadenas que representan los argumentos que son pasados a un programa para su ejecución.
+* Instala el módulo de _express_ con el comando `npm install express`. Verifica que el modulo haya sido agregado en el archivo `package.json`.
 
-- El primer elemento siempre será la ruta en la que se encuentra el ejecutable de NodeJS.
-- El segundo elemento será la ruta del archivo que se está ejecutando.
-- Los subsecuentes elementos son los argumentos que el usuario está enviando de manera ordenada.
-1. Crearemos un nuevo proyecto en un nuevo folder y crearemos un archivo `calculadora.js`.
-2. Pasaremos argumentos de una manera muy similar a nuestro script `suma.js` de la sesión 2, pero esta vez el primer argumento después del nombre de nuestro script será el nombre de una operación (`suma`, `resta`, `multiplica` o `divide`), y los siguientes argumentos serán dos números a operar.
-3. Guarda el siguiente código en el archivo `calculadora.js`:
+* Abre tu editor de texto favorito y crea un archivo llamado `index.js`.
 
-```jsx
-const tipoOperacion = process.argv[2];
-const num1 = Number(process.argv[3]);
-const num2 = Number(process.argv[4]);
+* Ingresa el siguiente código:
 
-switch (tipoOperacion) {
-  case 'suma':
-    console.log(`${num1} + ${num2} = ${num1 + num2}`)
-    break;
-  case 'resta':
-    console.log(`${num1} - ${num2} = ${num1 - num2}`)
-    break;
-  case 'multiplica':
-    console.log(`${num1} * ${num2} = ${num1 * num2}`)
-    break;
-  case 'divide':
-    console.log(`${num1} / ${num2} = ${num1 / num2}`)
-    break;
-  default:
-    break;
-}
+```javascript
+const express = require('express');
+
+const app = express();
+
+app.get('/', function (request, response) {
+  response.send('<h1>Hello World</h1>');
+});
+
+app.listen(8080);
 ```
 
-### El módulo readline
+* Ejecuta el código con el comando `node index.js`.
 
-Para tener una entrada asíncrona por parte del usuario cuándo nuestro código se está ejecutando utilizaremos la siguiente línea:
+* Ingresa en tu navegador a `localhost:8080`. Verás la palabra `Hello World` en negritas en pantalla.
 
-1. Guarda y ejecuta el siguiente código
+* Ahora agrega la siguiente línea de código antes de enviar la respuesta al cliente:
 
-    ```jsx
-    const readline = require('readline').createInterface({
-      input: process.stdin,
-      output: process.stdout
-    });
+```javascript
+response.set('Content-Type', 'text/plain');
+```
 
-    readline.question('¿Quién eres?', name => {
-      console.log(`Hola ${name}!`);
-      readline.close();
-    });
-    ```
+* En la terminal presiona `ctrl` + `c` para terminar el proceso actual de Node.js y vuelve a ejecutar el programa con `node index.js`.
 
-2. Analiza el comportamiento de esta línea. ¿Qué funcionalidades podremos mejorar en nuestra calculadora con esta función?
+* En el navegador vuelve a ingresar a `localhost:8080`. Verás que ahora aparecerá el texto `<h1>Hello World</h1>`.
+
+* ¿Qué es lo que hizo el encabezado **Content-Type**?
