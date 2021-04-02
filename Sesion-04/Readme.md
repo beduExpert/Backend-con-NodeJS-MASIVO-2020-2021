@@ -2,12 +2,12 @@
 
 ## Objetivos
 
-+ Comprender las ventajas de las aplicaciones que se ejecutan desde la línea de comandos, también conocida como CLI (Command Line Interface). Aprender a utilizar algunas aplicaciones del entorno CLI que populares en el ecosistema NodeJS.
++ Comprender la definición y el funcionamiento del protocolo HTTP que se utiliza como base para desarrollar un back-end.
 
 ## Tabla de Contenidos
 
-+ El objeto `process.argv`
-+ El módulo readline
-+ Objeto `argv`
-+ El paquete inquirer.js`
++ ¿Cómo funciona internet?
++ Protocolo TCP/IP
++ Protocolo HTTP
++ Introducción a Express.js
 
