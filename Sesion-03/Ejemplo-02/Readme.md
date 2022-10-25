@@ -48,7 +48,7 @@ Existen casos en el queremos usar una función que usa callbacks y requerimos us
 El siguiente ejemplo hace uso de *fs* usando callbacks para leer un archivo, observamos que es usada como promesa con *then*, de leer con éxito mostrará en pantalla el contenido del archivo.
 
 ```jsx
-const { fs } = require("fs")
+const fs = require("fs")
 
 function readFile(path) {
   return new Promise((resolve, reject) => {
