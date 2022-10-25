@@ -89,7 +89,7 @@ En el siguiente ejercicio se aborda todo lo visto en la sesión es una combinaci
             });
 
             resp.on("end", () => {
-              datos = JSON.parse(JSON.stringify(datos))
+              datos = JSON.parse(datos)
               resolve(datos);
             });
           })
@@ -100,8 +100,6 @@ En el siguiente ejercicio se aborda todo lo visto en la sesión es una combinaci
     }
 
     const pokemones = [
-      "bulbasur",
-      "charmader",
       "squirtle",
       "pidgey",
       "pikachu",
