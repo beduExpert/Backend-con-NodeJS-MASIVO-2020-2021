@@ -69,8 +69,6 @@ readFile("./archivo.txt")
 Es una promesa que se cumplirá cuando toda las promesas del argumento iterable hayan sido cumplidas, o bien se rechazará cuando alguna de ellas se rechace. 
 
 ```jsx
-const { values } = require("underscore");
-
 let promesa1 = new Promise((resolve, reject) => {
   setTimeout(resolve, 1000, "uno");
 });
