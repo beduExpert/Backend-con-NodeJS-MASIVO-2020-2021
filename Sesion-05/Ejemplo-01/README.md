@@ -1,69 +1,118 @@
 # Ejemplo 1
 
 ### Objetivo
-Crear una aplicación con Express.
+Comprender el concepto de rutas en Express y la mejor manera de establecerlas para acceder a nuestros recursos.
 
 ### Requerimientos
-- Instalación de Node.js completada.
+- Instalación de Node completada.
+- Completar retos y ejemplos de la `Sesión 4`.
 
 ### Desarrollo
-Sabemos que implementar un servidor utilizando únicamente las APIs que Node nos provee es posible, sin embargo, también te habrás dado cuenta que construirlo por tu propia cuenta puede tomarte un tiempo. Es por ello que han sido desarrolladas herramientas que nos permiten de una manera sencilla e intuitiva el iniciar un nuevo proyecto ofreciendonos lo básicamente necesario para iniciar.
+Dentro de Express, tenemos la posibilidad de generar rutas (paths) de una manera bastante sencilla, pero es muy importante conocer como es que estas funcionan y las mejores prácticas al momento de crearlas.
 
-Una de las herramientas más populares dentro del ecosistema de Node, es **Express**.
+La sintaxis `(req, res) => { ... }` representa una función anonima que será ejecutada cuando llegue alguna solicitud a la ruta que hemos especificado, también se le puede llamar *handler* o *callback*.
 
-1. Para iniciar, lo primero que debemos hacer es crear un proyecto de Node, para ello puedes apoyarte a través del comando `npm init -y`, el cuál te generará un archivo `package.json` con una configuración por defecto, asegurate de que tu archivo se ve así:
+Además, podrás observar que esta recibe dos parámetros. El primer parámetro es el `request`, el cuál contiene toda la información de la solicitud HTTP, mientras que el segundo parámetro `response`, es utilizado para definir el como la solicitud debería ser respondida.
 
-```json
-{
-  "name": "code",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
-}
-```
-> Algunas de las propiedades descritas en nuestro package.json no son necesarias por ahora, sin embargo es una forma rápida con la que puedes iniciar, recuerda que el archivo package.json es un elemento esencial dentro de un proyecto con Node.
-
-2. Ahora que ya tenemos listo nuestro proyecto, toca el turno de instalar nuestras dependencias. Para ello utilizaremos el comando `npm` para instalar las siguientes dependencias: `express`.
-
-```bash
-npm i -S express
-```
-> Ahora dentro de tu archivo package.json, podrás observar que la dependencia ha sido agregada.
-
-3. Listo! Ya tienes instalada la última versión de Express (hasta el momento en el que fue construída esta sesión la versión de express es 4.17.1). Ahora vamos a generar un archivo `app.js` donde colocaremos nuestro código.
-
-4. Ahora vayamos a nuestro archivo `app.js` y escribamos nuestra primera aplicación:
+Como puedes ver dentro de nuestro código anterior, tenemos definidas unas rutas para recibir solicitudes de tipo GET. La primera en nuestra ruta principal, la cuál cuando sea llamada mostrará en el cliente una página en HTML con el mensaje `Welcome to Express`.
 ```js
-const express = require('express');
-const app = express(); // Creating an Express application 
-
-// A port where our application will be mounted
-const APP_PORT = 3001;
-
-// Dummy data
-const notes = [
-  {
-    id: 1,
-    title: 'Dummy Note',
-    content: 'This is a dummy note',
-  },
-];
-
 // Creating a first route
 app.get('/', (req, res) => {
   return res.send('<h1>Welcome to Express</h1>');
 });
+```
 
+Mientras que en nuestra segunda ruta, podemos ver que resolvemos la solicitud utilizando el método `json` disponible dentro del objeto `response`, de esta forma Express automáticamente le indicará al cliente el tipo de contenido y como deberá interpretarlo, en este caso `JSON`.
+```js
 // Creating a second route
 app.get('/api/notes', (req, res) => {
   return res.json(notes);
 });
+```
+
+#### Probando nuestra aplicación
+Ahora con nuestro servidor que hemos creado dentro en el ejemplo pasado, sabemos que se encuentra escuchando en el puerto `3001`. Por lo tanto, podemos dirigirnos a nuestro navegador web e inspeccionar su funcionamiento, para eso vamos a ir a `http://localhost:3001/` y podremos ver el mensaje `Welcome to Express`.
+
+> Si ves un error dentro de tu navegador web, seguramente no haz iniciado el servidor, para iniciarlo utiliza el comando `npm run dev`.
+
+Nuestro siguiente paso es crear el esqueleto de nuestra aplicación para notas, declarando las rutas para creación, listado, actualización y eliminación (CRUD).
+
+1. Vamos a generar el directorio donde definiremos todos nuestros `handlers`, para ello crearemos un directorio de nombre `routes`.
+```
+mkdir routes
+```
+
+2. Ahora, dentro del directorio `routes`, vamos a agregar un archivo inicial `index.js` donde haremos la definición de las rutas asignadas a sus `handlers`. Para esto, utilizaremos el enrutador de Express que ya viene dentro de nuestra dependencia.
+```js
+const express = require('express');
+const router = express.Router();
+
+// router.use(path, handler)
+
+module.exports = router;
+```
+
+3. Una vez definido nuestro `router`, crearemos otro archivo llamado `notes.js`, donde definiremos cada una de nuestras rutas para el recurso `notes`.
+```js
+const express = require('express')
+const router = express.Router();
+
+let notes = [
+  {
+    id: 1,
+    title: 'Dummy',
+    content: 'Nota dummy'
+  }
+]
+// GET -> Obtener notas
+router.get('/', (request, response) => {
+  response.send(notes) 
+  // response.json(notes)
+})
+// POST -> Añadir nota
+router.post('/', (request,response) => {
+  notes.push(request.body)
+  response.send(`Nota ${request.body.id} agregada`)
+})
+// PATCH -> Editar nota
+router.patch('/', (request,response) => {
+  notes[request.body.id - 1] = request.body
+  response.send(`Nota ${request.body.id} modificada`)
+})
+// DELETE -> Eliminar nota
+router.delete('/', (request,response) => {
+  notes = notes.filter(note => note.id !== request.body.id)
+  response.send(`Nota ${request.body.id} eliminada`)
+})
+
+module.exports = router;
+```
+
+Como podrás darte cuenta, en las rutas `put` y `delete` tenemos una definición utilizando el caracter `:`, de esta manera, es como le indicamos a Express que vamos a recibir un parámetro y así poder identificar un elemento/recurso, en este caso, basado en su identificador (`:id`).
+
+4. Ahora, agregaremos nuestras rutas a nuestro enrutador indicandole como deberá resolver nuestros recursos.
+```js
+const express = require('express');
+const router = express.Router();
+
+// Adding routes handlers to 'notes' path
+router.use('/notes', require('./notes'));
+
+module.exports = router;
+```
+
+6. Ahora que hemos asignado nuestros `handlers` al path adecuado, es momento de modificar nuestro archivo `app.js` para adaptarlo a las nuevas necesidades.
+```js
+const express = require('express');
+const app = express(); // Creating an Express application 
+
+app.use(express.json())
+
+// A port where our application will be mounted
+const APP_PORT = 3001;
+
+// Getting routes definitions
+app.use('/api', require('./routes'));
 
 // Mounting express application on specific port 
 app.listen(APP_PORT, () => {
@@ -71,47 +120,14 @@ app.listen(APP_PORT, () => {
 });
 ```
 
-5. Ahora que hemos escrito nuestra primera aplicación en Express, es momento de echarla a andar. Desde nuestra terminal usaremos el comando `node` para ejecutar nuestro proyecto.
-```bash
-node app.js
-```
-> Para que este comando funcione adecuadamente, recuerda verificar que te encuentres en el directorio donde se encuentre el archivo `app.js` y sus dependencias, de lo contrario fallará.
+7. Para verificar nuestra aplicación esta funcionando adecuadamente, vamos a iniciar nuestro servidor nuevamente con el comando `npm run dev`, y dentro de nuestro navegador colocaremos `http://localhost:3001/api/notes` y podremos visualizar nuestras notas.
 
-Si todo ha ido como hemos previsto, podrás ver en tu terminal el mensaje `Express on port 3001`, esto significa que nuestra aplicación esta funcionando.
-
-```bash
-$ node app.js
-Express on port 3001
+```json
+[{"id":1,"title":"Dummy Note","content":"This is a dummy note"}]
 ```
 
-Hasta ahora nuestro proyecto funciona adecuadamente, sin embargo, cada que nosotros hagamos un cambio de nuestro código actual tendremos que reiniciar nuestro servidor de Express para poder visualizar esos cambios, de lo contrario nada cambiará. La solución a nuestro problema es `Nodemon`, una herramienta que nos permitirá observar cambios dentro de nuestros archivos y reiniciará automaticamente nuestra aplicación.
+En la siguiente sesión, conectaremos nuestra aplicación a una base de datos.
 
-6. Vamos a instalar `nodemon` como una dependencia de desarrollo utilizando el commando:
-```bash
-npm i -D nodemon
-```
-> Recuerda que las `devDependencies` no son necesarias en un ambiente de producción a diferencia de las especificadas en `dependencies`.
+<br/>
 
-7. Una vez hemos agregado `nodemon` vamos a agregar un script a nuestro `package.json` que nos permitirá ejecutar nuestra aplicación de una forma más rápida, por lo que agregaremos lo siguiente dentro de la propiedad `scripts`:
-```
-"dev": "nodemon app.js",
-```
-
-8. De esta manera, ahora podremos hacer uso del commando `npm run` para ejecutar el script que hemos definido:
-```bash
-npm run dev
-```
-
-9. Una vez que nuestro proyecto haya iniciado te darás cuenta que ahora nuestra aplicación ha sido ejecutada utilizando Nodemon.
-```
-> nodemon app.js
-
-[nodemon] 2.0.4
-[nodemon] to restart at any time, enter `rs`
-[nodemon] watching path(s): *.*
-[nodemon] watching extensions: js,mjs,json
-[nodemon] starting `node app.js`
-Express on port 3001
-```
-
-Ahora cada que realices un cambio dentro de tu aplicación, `Nodemon` se encargará de reiniciarla.
+[Siguiente reto 01](../reto-01/README.md)

@@ -24,6 +24,12 @@ Los autores deberán tener la siguiente información:
 > Recuerda que un usuario puede ser un autor o lector, y si es un autor puede tener muchas publicaciones.
 
 ### Referencias
-Documentación de Sequelize - https://sequelize.org/master/index.html
+Documentación de Sequelize - https://sequelize.org/docs/v6/
+
+<br/>
 
 #RetaTuPotencial
+
+<br/>
+
+[Siguiente Ejemplo 02](../Ejemplo-02/README.md)
