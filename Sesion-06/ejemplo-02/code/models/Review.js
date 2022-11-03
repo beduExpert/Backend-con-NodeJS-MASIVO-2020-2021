@@ -15,14 +15,12 @@ module.exports = (sequelize) => sequelize.define('reviews', {
   updatedAt: DataTypes.DATE,
 }, {
   hooks: {
-    beforeCreate: function (review, options, fn) {
+    beforeCreate: function (review, options) {
       review.createdAt = new Date();
       review.updatedAt = new Date();
-      fn(null, review);
     },
-    beforeUpdate: function (review, options, fn) {
+    beforeUpdate: function (review, options) {
       review.updatedAt = new Date();
-      fn(null, review);
     },
   },
 });
