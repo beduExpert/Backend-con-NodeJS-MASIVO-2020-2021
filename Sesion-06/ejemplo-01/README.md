@@ -13,10 +13,14 @@ Crear nuestro proyecto inicial
 2. Generaremos nuestro archivo principal `app.js`, donde tendremos toda la configuración inicial y la inicialización de nuestra aplicación de Express.
 
     ```js
+    // app.js
     const express = require('express');
     const app = express();
 
-    app.get('/', (req, res) => res.json({ message: 'Welcome to express' }));
+    app.use(express.urlencoded({ extended: true }));
+    app.use(express.json());
+
+    app.use('/api', require('./routes'));
 
     app.listen(3001, () => {
       console.log(`Express on port 3001`);
