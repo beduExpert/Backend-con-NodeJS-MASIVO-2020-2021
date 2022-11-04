@@ -11,7 +11,7 @@ Así que, con eso que has logrado obtener es momento de ponernos manos a la obra
 1. Ahora que tienes los modelos listos, construiremos la base de datos utilizando el CLI de Sequelize, que nos permitirá generar de una manera más simple y sencilla nuestra base de datos a través de las migraciones. Para ello instalaremos nuestras dependencias necesarias:
 
     ```
-    npm i sequelize mysql
+    npm i sequelize mysql2
     npm i -D sequelize-cli
     ```
 
