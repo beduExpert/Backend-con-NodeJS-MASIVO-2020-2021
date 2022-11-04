@@ -6,7 +6,7 @@ En el ejercicio anterior, creamos dos de nuestras tablas necesarias para nuestro
   - Nombre.
   - Apellido Materno.
   - Apellido Paterno.
-  - Tipo de usuario.
+  - Tipo de usuario -> varchar "STRING" ('admin', 'client')
   - Correo Electrónico (este campo deberá ser único).
   - Contraseña.
 
