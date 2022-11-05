@@ -121,6 +121,11 @@ npm i -S jsonwebtoken
 ```
 ```js
 // auth.js
+const express = require('express');
+const router = express.Router();
+const sequelize = require('../config/db');
+const jwt = require('jsonwebtoken')
+
 router.post('/login', async (req, res) => {
   const { body } = req;
   const user = await sequelize.models.users.findOne({ where: {
@@ -145,6 +150,12 @@ router.post('/login', async (req, res) => {
     token,
   });
 });
+
+router.post('/signup', (req, res) => {
+  // TODO: Add logic for register a new user
+});
+
+module.exports = router;
 ```
 
 > Por ahora, estamos usando la configuración más básica de JWT, sin embargo, es importante aplicar una estrategía a través de llaves para asegurarte que los tokens están siendo generados y firmados por tu servidor. Si necesitas más información consulta la documentación del paquete JWT para Node: https://github.com/auth0/node-jsonwebtoken.
