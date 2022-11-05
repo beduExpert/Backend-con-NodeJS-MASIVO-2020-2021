@@ -57,3 +57,7 @@ app.listen(3001, () => {
 ```
 
 > Puedes saber más al respecto sobre su implementación aquí: https://expressjs.com/en/resources/middleware/cors.html.
+
+<br/>
+
+[Siguiente Ejemplo 01](../Ejemplo-02/Readme.md)

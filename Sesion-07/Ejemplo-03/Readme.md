@@ -47,7 +47,7 @@ module.exports = router;
 ```
 
 4. Una vez que hemos aplicado la autenticación, es hora de probar nuestro servicio.
-[Ir a reto #2](https://github.com/beduExpert/B2-Backend-Node-2020/tree/master/Sesion-07/Reto-02)
+[Ir a reto #2](../Reto-02/Readme.md)
 
 #### Autorización a través de permisos
 Ahora que ya estamos autenticados, necesitamos indicarle a nuestra API, cuales rutas son accesibles para usuarios de tipo `administrador` y cuales son para usuarios de tipo `cliente`. 
@@ -100,6 +100,6 @@ module.exports = router;
 
 3. Ahora revisemos que los permisos funcionan correctamente.
 
-[Ir al reto #3](https://github.com/beduExpert/B2-Backend-Node-2020/tree/master/Sesion-07/reto-03)
+[Ir al reto #3](../reto-03/README.md)
 
 #RetaTuPotencial

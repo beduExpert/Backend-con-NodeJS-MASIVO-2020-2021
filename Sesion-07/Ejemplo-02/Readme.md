@@ -16,7 +16,8 @@ const bcrypt = require('bcrypt');
 module.exports = (sequelize) => sequelize.define('users', {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   name: DataTypes.STRING,
-  lastname: DataTypes.STRING,
+  firstSurname: DataTypes.STRING,
+  secondSurname: DataTypes.STRING,
   type: DataTypes.STRING,
   email: DataTypes.STRING,
   password: DataTypes.STRING,
@@ -41,7 +42,8 @@ module.exports = (sequelize) => {
   const User = sequelize.define('users', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     name: DataTypes.STRING,
-    lastname: DataTypes.STRING,
+    firstSurname: DataTypes.STRING,
+    secondSurname: DataTypes.STRING,
     type: DataTypes.STRING,
     email: DataTypes.STRING,
     password: DataTypes.STRING,
@@ -71,7 +73,8 @@ Este es un ejemplo de registro.
   "data": {
     "id": 2,
     "name": "John",
-    "lastname": "Doe",
+    "firstSurname": "Doe",
+    "secondSurname": "Doe",
     "type": "client",
     "email": "john.doe@web.com",
     "password": "$2b$10$2DilyYYJsJl7Bs8ZwAC7CusYplg7kVueJSG1rCDRi8vKeAXNmGVUi",
@@ -146,6 +149,8 @@ router.post('/login', async (req, res) => {
 
 > Por ahora, estamos usando la configuración más básica de JWT, sin embargo, es importante aplicar una estrategía a través de llaves para asegurarte que los tokens están siendo generados y firmados por tu servidor. Si necesitas más información consulta la documentación del paquete JWT para Node: https://github.com/auth0/node-jsonwebtoken.
 
-[Ir al reto #1](https://github.com/beduExpert/B2-Backend-Node-2020/tree/master/Sesion-07/Reto-01)
+<br/>
+
+[Ir al reto #1](../Reto-01/Readme.md)
 
 #RetaTuPotencial

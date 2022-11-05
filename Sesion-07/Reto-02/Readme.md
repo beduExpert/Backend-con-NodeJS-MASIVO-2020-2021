@@ -17,3 +17,7 @@ Duración del reto: 10m
 2. Ahora, sin autenticación deberás revisar que no tengas acceso a los recursos solicitados.
 
 #RetaTuPotencial
+
+<br/>
+
+[Ir al Ejemplo 03 segunda parte](../Ejemplo-03/Readme.md#autorización-a-través-de-permisos)
