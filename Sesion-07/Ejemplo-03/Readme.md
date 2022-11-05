@@ -12,19 +12,21 @@ mkdir middlewares
 2. Ahora, crearemos un archivo `authentication.js` donde escribiremos las validaciones necesarias.
 ```js
 // authetication.js
-const { response } = require('express');
-const jwt = require('jsonwebtoken');
+const { response } = require('express')
+const jwt = require('jsonwebtoken')
+const sequelize = require('../db')
 
 const authenticate = (req, res, next) => {
-  const { authorization } = req.headers;
-  jwt.verify(authorization, 'secretkey', (err, decoded) => {
-    if (err) return res.status(401).json({ message: 'Unauthorized' });
-    console.log(decoded);
-    next();
-  });
-};
+  const { authorization } = req.headers
 
-module.exports = authenticate;
+  jwt.verify(authorization, 'secretkey', async (err, decoded) => {
+    if(err) return res.status(401).json({ message: 'Unauthorized!' })
+    req.user = await sequelize.models.users.findOne({ where: { id: decoded.userId } })
+    next()
+  })
+}
+
+module.exports = authenticate
 ```
 
 Como podrás observar en el código anterior los middlewares tienen una similitud a los handlers de las solicitudes, sin embargo, su caracteristica principal es interceptar las solicitudes para realizar una acción previa a continuar con la solicitud.
