@@ -121,4 +121,4 @@ Y por último, dentro del componente agregaremos estás las dos variables de est
 9. Una vez que hayas concluido con esta implementación, puedes proceder a hacer la prueba de registrar una cuenta dentro de tu servicio web.
 ![Register Successful](./docs/register-successfully.png)
 
-[Continuar con el Reto #1](https://github.com/beduExpert/B2-Backend-Node-2020/tree/master/Sesion-07/reto-03)
+[Continuar con el Reto #1](../Reto-1/README.md)
