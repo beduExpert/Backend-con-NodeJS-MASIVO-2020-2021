@@ -242,3 +242,7 @@ Podremos observar que nuestra aplicación esta siendo ejecutada en un puerto ale
 ![Testing API Production](./docs/testing-api-production.png)
 
 Por ahora, nos mandará un mensaje de `Unauthorized`, ya que no estamos autenticados dentro de nuestra API.
+
+<br/>
+
+[Ir al Ejemplo #3](../Ejemplo-3/README.md)
