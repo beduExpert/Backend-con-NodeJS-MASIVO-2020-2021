@@ -9,6 +9,5 @@
 - [Reto-1](Reto-1)
 - [Ejemplo-4](Ejemplo-4): Protección de rutas
 - [Reto-2](Reto-2)
-- [Reto-3](Reto-3)
 
 #RetaTuPotencial
