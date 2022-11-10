@@ -43,7 +43,7 @@ const ProductsPage = () => {
       if (!response.ok) { 
         setError(body.message);
       } else {
-        setProducts(body.data.rows);
+        setProducts(body.rows);
       }
     }
     fetchData();
