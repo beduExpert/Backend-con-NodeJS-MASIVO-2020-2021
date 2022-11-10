@@ -1,6 +1,6 @@
 # Reto #1
 ### Descripción
-En el [Ejemplo #3](https://github.com/beduExpert/B2-Backend-Node-2020/tree/master/Sesion-08/Ejemplo-3) hemos visto como hacer el registro de nuestros usuarios dentro de nuestra plataforma, con esto que haz aprendido, estás listo para una implementación. Ahora, toca el turno de que desarrolles la lógica para que el usuario pueda iniciar sesión.
+En el [Ejemplo #3](../Ejemplo-3/README.md) hemos visto como hacer el registro de nuestros usuarios dentro de nuestra plataforma, con esto que haz aprendido, estás listo para una implementación. Ahora, toca el turno de que desarrolles la lógica para que el usuario pueda iniciar sesión.
 
 Recuerda que los campos para iniciar sesión, son a través del `Correo Electrónico` que el usuario ha registro y su contraseña.
 
@@ -17,3 +17,5 @@ Duración del reto: 20 min.
 4. También, deberás redireccionar al usuario a la página de productos (en caso de tener dudas de como lograr eso, consulta la documentación de [React.router](https://reactrouter.com/web/api/location)).
 
 #RetaTuPotencial
+
+[Continuar con el Reto #2](../Reto-2/README.md)
