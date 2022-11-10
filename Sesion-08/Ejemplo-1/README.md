@@ -29,18 +29,18 @@ require('dotenv').config(); // Configuring dotenv
 3. Ahora, para que nuestra aplicación siga funcionando de forma adecuada y adaptada a las variables de entorno, generaremos un archivo `.env` donde colocaremos nuestras variables necesarias.
 ```
 # Application
-PORT=3001
+PORT=8080
 
 # Authorization
 JWT_SECRETKEY=secretkey
 JWT_EXPIRESIN=36000
 
 # Database
-MARIADB_USER=root
-MARIADB_PASSWORD=root
-MARIADB_DATABASE=ecommerce-api
-MARIADB_HOST=127.0.0.1
-MARIADB_PORT=3306
+DB_USER=root
+DB_PASSWORD=123456
+DB_DATABASE=sesion6
+DB_HOST=127.0.0.1
+DB_PORT=3306
 ```
 > Nota: es importante que NUNCA subas este archivo a tu código, ya que en algún momento almacenaras información sensible, API Keys, etc. De preferencia, maneja un archivo `.env` de ejemplo, para que otros desarrolladores puedan registrar sus propias credenciales basados en ese archivo de referencia.
 
@@ -74,11 +74,11 @@ jwt.verify(authorization, process.env.JWT_SECRETKEY, async (err, decoded) => {
 require('dotenv').config();
 
 const defaultConfig = {
-  username: process.env.MARIADB_USER,
-  password: process.env.MARIADB_PASSWORD,
-  database: process.env.MARIADB_DATABASE,
-  host: process.env.MARIADB_HOST,
-  port: process.env.MARIADB_PORT,
+  username: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_DATABASE,
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT,
   dialect: 'mariadb',
 };
 
@@ -91,4 +91,4 @@ module.exports = {
 ```
 
 7. Ahora, verifiquemos que todo funciona adecuadamente 🚀
-[Ir al Ejemplo #2](https://github.com/beduExpert/B2-Backend-Node-2020/tree/master/Sesion-08/Ejemplo-2)
+[Ir al Ejemplo #2](../Ejemplo-2/README.md)
