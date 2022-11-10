@@ -133,4 +133,4 @@ const ProductsPage = () => {
 export default ProductsPage;
 ```
 
-[Ir al reto #2](https://github.com/beduExpert/B2-Backend-Node-2020/tree/master/Sesion-08/Reto-2)
+[Ir al reto #2](../Reto-2/README.md)

@@ -1,13 +1,15 @@
 # Reto #2
 ### Descripción
-Ahora, con lo que hemos desarrollado en nuestros ejemplos anteriores como podrías resolver que nos muestre la información del usuario en donde se muestran los botones de registro y login dentro del `Header`.
+Desarrolla la página de usuarios y muestra la información de los usuarios registrados.
 
-Duración del reto: 15 min.
+Duración del reto: 20 min.
 
 ### Requerimientos
 - Tener un usuario para autenticarte.
+- Tener arriba el servicio de API.
 
 ### Desarrollo
-1. Modifica el archivo `src/components/Header.js` donde desarrollaras toda la lógica necesaria para mostrar la información del usuario en lugar de los botones cuando están autenticados.
+1. Tendrás que crear una nueva página y registrarla.
+2. Consumiras el API de usuarios para mostrar la información en esta nueva página.
 
 #RetaTuPotencial

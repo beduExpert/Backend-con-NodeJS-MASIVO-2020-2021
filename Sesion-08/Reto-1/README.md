@@ -18,4 +18,4 @@ Duración del reto: 20 min.
 
 #RetaTuPotencial
 
-[Continuar con el Reto #2](../Reto-2/README.md)
+[Continuar con el Ejemplo #4](../Ejemplo-4/README.md)
