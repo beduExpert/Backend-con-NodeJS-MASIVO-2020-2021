@@ -33,7 +33,7 @@ PORT=8080
 
 # Authorization
 JWT_SECRETKEY=secretkey
-JWT_EXPIRESIN=36000
+JWT_EXPIRESIN='8h'
 
 # Database
 DB_USER=root
